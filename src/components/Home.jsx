@@ -1,5 +1,5 @@
 import React from 'react';
-import './../styles.css';
+import './../styles.scss';
 
 const Home = () => {
   return (
@@ -7,6 +7,7 @@ const Home = () => {
       <div className="header">
           <h1>Welcome to React application</h1>
       </div>
+      <div className="react-logo"></div>
     </div>
   )
 }
