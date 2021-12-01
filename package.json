@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "webpack serve --config ./webpack.config.js --mode development"
+    "start": "webpack serve --config ./webpack.config.js --mode development",
+    "build": "npx webpack-cli build"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
@@ -8,6 +9,7 @@
     "@babel/preset-react": "^7.16.0",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
+    "file-loader": "^6.2.0",
     "node-sass": "^6.0.1",
     "sass-loader": "^12.3.0",
     "style-loader": "^3.3.1",
