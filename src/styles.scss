@@ -1,11 +1,11 @@
 @import url(./Assets/Fonts/fonts.scss);
 
+//Class style rules:
 .container {
-  height: 100vh;
-  background-color: #E7E3EB;
+  background-color: #222222;
   .header {
       padding: 15px 20px;
-      background-color: #6200EE;
+      background-color: rgb(103, 117, 117);
       h1 {
           color: #FFF;
           font-family: 'Open Sans Italic';
@@ -13,22 +13,21 @@
   }
 }
 
-.react-logo {
-  background: url('./Assets/Images/cp2020-logo.png') no-repeat center;
-  height: 500px;
-  width: 500px;
-  background-size: contain;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .header {
   padding: 15px 20px;
-  background-color: #6200EE;
+  background-color: darkslategrey;
 }
 
-h1 {
-  color: #FFF;
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+.widget {
+  background-color: darkslategrey;
+  margin: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
