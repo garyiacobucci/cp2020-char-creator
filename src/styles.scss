@@ -23,9 +23,34 @@ body {
   }
 }
 
+.points-distributor-wrapper {
+  display: flex;
+  flex-direction: row;
+  .points-distributor-category {
+    width: 33%;
+    text-align: center;
+  }
+  .points-distributor-control-panel {
+    width: 33%;
+    text-align: center;
+  }
+  .points-distributor-value {
+    width: 33%;
+    text-align: center;
+  }
+}
+
 .responsive {
   max-width: 900px;
   height: auto;
+}
+
+.split-display {
+  display: flex;
+  flex-direction: row;
+  .split-display-child {
+    width: 50%;
+  }
 }
 
 .widget {
