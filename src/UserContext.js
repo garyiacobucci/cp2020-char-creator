@@ -3,7 +3,7 @@ const UserContext = React.createContext();
 
 function UserContextProvider(props) {
 
-    // Context data for setting theme:
+    // State data for setting theme:
     const [theme, setTheme] = useState('2020');
     
     function toggleTheme() {
@@ -41,10 +41,27 @@ function UserContextProvider(props) {
     const accAssignedPoints = 
       intPoints+refPoints+techPoints+coolPoints+attPoints+luckPoints+maPoints+bodyPoints+empPoints;
 
-    const updateMaPoints = (maPoints) => {
-      setMaPoints(maPoints);
-      updateRun(maPoints);
-    }
+    // State for Career Skills points:
+
+    const [careerSkillPoints, setCareerSkillPoints] = useState({1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0,10:0});
+
+    const accSkillPoints = 
+      careerSkillPoints[1]+
+      careerSkillPoints[2]+
+      careerSkillPoints[3]+
+      careerSkillPoints[4]+
+      careerSkillPoints[5]+
+      careerSkillPoints[6]+
+      careerSkillPoints[7]+
+      careerSkillPoints[8]+
+      careerSkillPoints[9]+
+      careerSkillPoints[10]
+
+  // State for chosen role:
+
+  const [manualRole, setManualRole] = useState(false);
+
+  const [role, setRole] = useState();
 
     return (
         <UserContext.Provider value={{
@@ -58,10 +75,13 @@ function UserContextProvider(props) {
           coolPoints, setCoolPoints,
           attPoints, setAttPoints,
           luckPoints, setLuckPoints,
-          maPoints, updateMaPoints,
+          maPoints, setMaPoints,
           bodyPoints, setBodyPoints,
           empPoints, setEmpPoints,
           accAssignedPoints,
+          careerSkillPoints, setCareerSkillPoints,
+          accSkillPoints,
+          role, setRole, manualRole, setManualRole
         }}>
             {props.children}
         </UserContext.Provider>

@@ -1,6 +1,7 @@
 import React from 'react';
 import './../styles.scss';
-import Build from './Build';
+import Stats from './Stats';
+import Role from './Role';
 import CharSheet from './CharSheet';
 import Info from './Info';
 
@@ -16,7 +17,8 @@ const App = () => {
       </div>
 
       <Info />
-      <Build />
+      <Stats />
+      <Role />
       <CharSheet />
   
     </div>
