@@ -5,7 +5,7 @@ import {
   Radio, RadioGroup 
 } from '@material-ui/core';
 import { UserContext } from '../UserContext';
-import staticData from '../staticData.js';
+import { d10 } from '../staticData.js';
 
 const Stats = () => {
 
@@ -27,9 +27,6 @@ const Stats = () => {
     empPoints, setEmpPoints,
     accAssignedPoints,
   } = useContext(UserContext);
-
-  //Destructure static data:
-  const { d10 } = staticData;
 
   //Define function for updating controlled form input:
   function handleChange(event, hookName) {

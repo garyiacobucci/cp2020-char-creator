@@ -45,16 +45,10 @@ body {
   height: auto;
 }
 
-.role-and-skills-wrapper {
+.pickup-skills-wrapper {
   background-color: #222222;
   display: flex;
   flex-direction: row;
-  .role-panel {
-    width: 50%;
-  }
-  .skills-panel {
-    width: 50%;
-  }
 }
 
 .split-display {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { career } from './staticData';
 const UserContext = React.createContext();
 
 function UserContextProvider(props) {
@@ -43,25 +44,46 @@ function UserContextProvider(props) {
 
     // State for Career Skills points:
 
-    const [careerSkillPoints, setCareerSkillPoints] = useState({1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0,10:0});
+    const [careerSkillPoints, setCareerSkillPoints] = useState({1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0,10:0,11:0,12:0});
 
     const accSkillPoints = 
-      careerSkillPoints[1]+
-      careerSkillPoints[2]+
-      careerSkillPoints[3]+
-      careerSkillPoints[4]+
-      careerSkillPoints[5]+
-      careerSkillPoints[6]+
-      careerSkillPoints[7]+
-      careerSkillPoints[8]+
-      careerSkillPoints[9]+
-      careerSkillPoints[10]
+      Object.values(careerSkillPoints).reduce(function (sum, value) {
+        return sum + value;
+    }, 0);
 
   // State for chosen role:
 
   const [manualRole, setManualRole] = useState(false);
 
-  const [role, setRole] = useState();
+  const [role, setRole] = useState('');
+
+  // Context and state-dependent methods for pickup skills:
+
+  const [pickupSkills, setPickupSkills] = useState([['Select', 'Select', 0]]);
+
+  const accPickupSkills = pickupSkills.reduce((allTotal, skillArray) => {
+    const value = skillArray[2];
+    return allTotal + value;
+  }, 0);
+
+  // This function is used to update the pickupSkills state that is selected by the user. 
+  // This data, as initialized above, consists of an array of arrays, where each element is
+  // an array consisting of ['selected category from pickup skill category dropdown', 
+  // 'selected pickup skill from dropdown', and a numeric value selected by them].
+  const updatePickupSkill = (event, array, targetElement, updatedValue) => {
+    // First, we create a copy of the array to be updated.
+    const updatedPickupSkills = [...pickupSkills];
+    if (targetElement === 2) {
+      // A bit convoluted, but if the targetElement is index 2, it means we're looking to modify the numeric value.
+      // Therefore, we won't extract the updated value from the event.target, but from the optional fourth argument we've passed in.
+      updatedPickupSkills[array][2] = updatedValue;
+    }
+    // Otherwise, we extract the updated information from event.target.value, and finally we call the hook's update function.
+    else updatedPickupSkills[array][targetElement] = event.target.value;
+    setPickupSkills(updatedPickupSkills);
+  }
+
+
 
     return (
         <UserContext.Provider value={{
@@ -81,7 +103,8 @@ function UserContextProvider(props) {
           accAssignedPoints,
           careerSkillPoints, setCareerSkillPoints,
           accSkillPoints,
-          role, setRole, manualRole, setManualRole
+          role, setRole, manualRole, setManualRole,
+          pickupSkills, setPickupSkills, updatePickupSkill, accPickupSkills
         }}>
             {props.children}
         </UserContext.Provider>

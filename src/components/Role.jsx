@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { 
-  MenuItem, InputLabel, Select,
+  Button, MenuItem, InputLabel, Select,
   FormControlLabel, FormControl,
   Radio, RadioGroup 
 } from '@material-ui/core';
@@ -11,8 +11,9 @@ const Role = () => {
 
   //Connect to UserContext via Context API:
   const {
-    assignCharPointsRoll,
-    role, setRole, manualRole, setManualRole
+    refPoints, intPoints,
+    role, setRole, manualRole, setManualRole,
+    pickupSkills, setPickupSkills, updatePickupSkill, accPickupSkills
   } = useContext(UserContext);
 
   return (
@@ -22,18 +23,18 @@ const Role = () => {
       <h3>Role</h3>
       <p>Click radio button again to re-roll / reselect</p>
 
-      <div className="role-and-skills-wrapper">
         <div className="role-panel">
           <FormControl component="fieldset">
             <RadioGroup
               aria-label="Role Selection Method"
               name="role-selection-radio-group">
-              <FormControlLabel value="random" control={<Radio />} label="Randomly Choose Role" onClick={setManualRole(false)} />
-              <FormControlLabel value="manual" control={<Radio />} label="Manually Choose Role" onClick={setManualRole(true)} />
+              <FormControlLabel value="random" control={<Radio />} label="Randomly Choose Role" onClick={() => setManualRole(false)} />
+              <FormControlLabel value="manual" control={<Radio />} label="Manually Choose Role" onClick={() => setManualRole(true)} />
             </RadioGroup>
           </FormControl>
 
-          <FormControl fullWidth>
+          { // Render a dropdown to select role manually, only if manual selection has been chosen by the user:
+            manualRole ? <FormControl fullWidth>
             <InputLabel id="role-select-label">Role</InputLabel>
             <Select
               labelId="role-select-label"
@@ -52,15 +53,60 @@ const Role = () => {
               <MenuItem value={'Corp'}>Corp</MenuItem>
               <MenuItem value={'Fixer'}>Fixer</MenuItem>
             </Select>
-          </FormControl>
+          </FormControl> : ''}
 
-          <CareerSkills />
+          {
+            // Render the Career Skills panel interface once a role has been selected:
+           (role !== '') ? <CareerSkills /> : ''
+           }
+
         </div>
-        <div className="skills-panel">
-          <h5>Pickup Skills</h5>
-          <h6>Pickup Skill Points (REF + INT) :</h6>
-          <h6>Pickup Skill Points Remaining:</h6>
+        <div className="pickup-skills-wrapper">
+        <div id="pickup-skills-panel">
+          <h4>Pickup Skills</h4>
+          <h5>Pickup Skill Points (REF + INT) : {refPoints+intPoints}</h5>
+          <h6>Pickup Skill Points Remaining: {(refPoints+intPoints)-accPickupSkills}</h6>
+          <div><Button variant="contained" onClick={()=>{setPickupSkills([...pickupSkills, ['Select', 'Select', 0]])}}>Add a Pickup Skill</Button></div>
         </div>
+
+        {pickupSkills.map((category, i) => (
+          <div className="points-distributor-wrapper" key={i}>
+
+            <div className="points-distributor-category">
+              <Select
+                labelId="pickup-skills-select-label"
+                id="pickup-skills-select"
+                value={pickupSkills[i][0]}
+                label="Pickup Skill"
+                onChange={(e)=>updatePickupSkill(e, i, 0)}
+              >
+                <MenuItem value={'Select'}>SELECT</MenuItem>
+                <MenuItem value={'ATTR'}>ATTR</MenuItem>
+                <MenuItem value={'BODY'}>BODY</MenuItem>
+                <MenuItem value={'COOL'}>COOL</MenuItem>
+                <MenuItem value={'EMP'}>EMP</MenuItem>
+                <MenuItem value={'INT'}>INT</MenuItem>
+                <MenuItem value={'REF'}>REF</MenuItem>
+                <MenuItem value={'TECH'}>TECH</MenuItem>
+              </Select>
+
+            </div>
+            <div className="points-distributor-control-panel">
+              <Button 
+                variant="contained" onClick={(e) => setPickupSkills((e)=>{updatePickupSkill(e, i, 2, pickupSkills[i][2]+1)})}
+                disabled={pickupSkills[i][0]==='Select'||(refPoints+intPoints)-accPickupSkills<1} >+
+              </Button>
+              <Button 
+                variant="contained" onClick={(e) => setPickupSkills((e)=>updatePickupSkill(e, i, 2, pickupSkills[i][2]-1))}
+                disabled={pickupSkills[i][0]==='Select'||pickupSkills[i][2]<1} >-
+              </Button>
+            </div>
+            <div className="points-distributor-value">
+              {pickupSkills[i][2]}
+            </div>
+          </div>
+        ))}        
+
       </div>
 
 
