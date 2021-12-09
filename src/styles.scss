@@ -7,12 +7,37 @@ body {
   margin: 0px;
 }
 
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: yellow; 
+  text-decoration:none; 
+  cursor:pointer;  
+}
+
+ul {
+  list-style-type: none;
+  margin:0px;
+  padding:0px 0px 0px 7px;
+}
+
+input {
+  background-color: #011126;
+  color: #D90452;
+}
+
 .container {
-  background-color: #222222;
+  background-color: #011126;
   display: flex;
   flex-direction: column;
   .header {
-      background-color: darkslategrey;
+      background-image: url('./Assets/Images/header_background.jpg');
+      background-size: cover;
+      background-position-y: 60%;
+      background-color: #011126;
       padding: 15px 20px;
       background-color: rgb(103, 117, 117);
       h1 {
@@ -46,7 +71,7 @@ body {
 }
 
 .pickup-skills-wrapper {
-  background-color: #222222;
+  background-color: #011126;
   display: flex;
   flex-direction: row;
 }
@@ -62,7 +87,7 @@ body {
 .widget {
   align-self: center;
   max-width: 900px;
-  background-color: darkslategrey;
+  background-color: #011C40;
   margin: 10px;
   padding-top: 10px;
   padding-bottom: 10px;

@@ -8,6 +8,137 @@ const d10 = (n) => {
   return rolls;  
 }
 
+const clothes = {
+  1: "Biker leathers",
+  2: "Blue jeans",
+  3: "Corporate suits",
+  4: "Jumpsuits",
+  5: "Miniskirts",
+  6: "High Fashion",
+  7: "Cammos",
+  8: "Normal clothes",
+  9: "Nude",
+  10: "Bag lady chic"
+};
+
+const hairstyle = {
+  1: "Mohawk",
+  2: "Long & Ratty",
+  3: "Short & Spiked",
+  4: "Wild & all over",
+  5: "Bald",
+  6: "Striped",
+  7: "Tinted",
+  8: "Neat, short",
+  9: "Short, curly",
+  10: "Long, straight"
+};
+
+const affectations = {
+  1: "Tattoos",
+  2: "Mirrorshades",
+  3: "Ritual Scars",
+  4: "Spiked gloves",
+  5: "Nose Rings",
+  6: "Earrings",
+  7: "Long fingernails",
+  8: "Spike heel boots",
+  9: "Weird contact lenses",
+  10: "Fingerless gloves"
+};
+
+const famRank = {
+  1: "Corporate Executive",
+  2: "Corporate Manager",
+  3: "Corporate Technician",
+  4: "Nomad Pack",
+  5: "Pirate Fleet",
+  6: "Gang family",
+  7: "Crime Lord",
+  8: "Combat Zone Poor",
+  9: "Urban homeless",
+  10: "Arcology family"
+};
+
+const childEnv = {
+  1: "Spent on the street, with no adult supervision",
+  2: "Spent in a safe corporate suburbia",
+  3: "In a Nomad Pack moving from town to town",
+  4: "In a decarying, once upscale neighborhood",
+  5: "In a defended corporate zone in the central City",
+  6: "In the heart of the combat zone",
+  7: "In a small village or town far from the city",
+  8: "In a large arcology city",
+  9: "In an aquatic pirate pack",
+  10: "On a corporate controlled farm or research facility"
+};
+
+const persTraits = {
+  1: "Shy and secretive",
+  2: "Rebellious, antisocial, violent",
+  3: "Arrogant, proud, aloof",
+  4: "Moody, rash and headstrong",
+  5: "Picky, fussy and nervous",
+  6: "Stable and serious",
+  7: "Silly and fluffheaded",
+  8: "Sneaky and deceptive",
+  9: "Intellectual and detached",
+  10: "Friendly and outgoing"
+};
+
+const persValued = {
+  1: "A parent (or guardian)",
+  2: "Brother or sister",
+  3: "Lover",
+  4: "Friend",
+  5: "Yourself",
+  6: "A pet",
+  7: "Teacher or mentor",
+  8: "Public figure",
+  9: "A personal hero",
+  10: "No one"
+};
+
+const youValue = {
+  1: "Money",
+  2: "Honor",
+  3: "Your word",
+  4: "Honesty",
+  5: "Knowledge",
+  6: "Vengeance",
+  7: "Love",
+  8: "Power",
+  9: "Having a good time",
+  10: "Friendship"
+};
+
+const howFeel = {
+  1: "Neutral",
+  2: "Neutral",
+  3: "I like almost everyone",
+  4: "I hate almost everyone",
+  5: "People are tools. Use them for your own goals and discard them",
+  6: "Every person is a valuable individual",
+  7: "People are obstacles to be destroyed if they cross me",
+  8: "People are untrustworthy. Don't depend on anyone",
+  9: "Wipe 'em all out and give the place to the cockroaches",
+  10: "People are wonderful"
+};
+
+const valuedPos = {
+  1: "A weapon",
+  2: "A tool",
+  3: "A piece of clothing",
+  4: "A photograph",
+  5: "A book or diary",
+  6: "A recording",
+  7: "A musical instrument",
+  8: "A piece of jewelry",
+  9: "A toy",
+  10: "A letter"
+};
+
+
 
 const skills = {
   special: {
@@ -259,4 +390,4 @@ const career = {
 }
 
 
-export { d10, skills, career}
+export { d10, clothes, hairstyle, affectations, famRank, childEnv, persTraits, persValued, youValue, howFeel, valuedPos, skills, career}

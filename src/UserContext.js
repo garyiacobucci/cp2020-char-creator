@@ -26,7 +26,6 @@ function UserContextProvider(props) {
     function assignCharPointsRoll(roll) {
       setCharPointsRoll(roll);
       if (!charPointsHaveBeenRolled) setCharPointsHaveBeenRolled(true);
-      console.log(charPointsRoll)
     }
 
     const [intPoints, setIntPoints] = useState(0);
@@ -71,7 +70,6 @@ function UserContextProvider(props) {
     setPickupSkillCategories([...pickupSkillCategories, 'select']);
     setPickupSkills([...pickupSkills, 'select']);
     setPickupSkillValues([...pickupSkillValues, 0]);
-    console.log('pickupSkillCategories is ', pickupSkillCategories, ', pickupSkills is ', pickupSkills, ', and pickupSkillValues is ', pickupSkillValues)
   }
 
   const removePickupSkillRow = (i) => {
@@ -111,6 +109,23 @@ function UserContextProvider(props) {
     setPickupSkillValues(updatedPickupSkillValues);
   }
 
+  // State for clothes & personal style
+  const [selectedClothes, setSelectedClothes] = useState('select');
+  const [selectedHairstyle, setSelectedHairstyle] = useState('select');
+  const [selectedAffectations, setSelectedAffectations] = useState('select');
+
+  // State for family background
+  const [selectedFamRank, setFamRank] = useState('select');
+  const [selectedChildEnv, setChildEnv] = useState('select');
+  
+  // State for personality
+  const [selectedPersTraits, setPersTraits] = useState('select');
+  const [selectedPersValued, setPersValued] = useState('select');
+  const [selectedYouValue, setYouValue] = useState('select');
+  const [selectedHowFeel, setHowFeel] = useState('select');
+  const [selectedValuedPos, setValuedPos] = useState('select');
+
+
     return (
         <UserContext.Provider value={{
           theme, toggleTheme,
@@ -132,7 +147,18 @@ function UserContextProvider(props) {
           role, setRole, manualRole, setManualRole,
           addNewPickupSkillRow, removePickupSkillRow, pickupSkillCategories, setPickupSkillCategories, 
             updatePickupSkillCategories, pickupSkills, setPickupSkills, updatePickupSkills,
-            pickupSkillValues, setPickupSkillValues, updatePickupSkillValues, accPickupSkills
+            pickupSkillValues, setPickupSkillValues, updatePickupSkillValues, accPickupSkills,
+          selectedClothes, setSelectedClothes, 
+          selectedHairstyle, setSelectedHairstyle, 
+          selectedAffectations, setSelectedAffectations,
+          selectedFamRank, setFamRank, 
+          selectedChildEnv, setChildEnv, 
+          selectedPersTraits, setPersTraits, 
+          selectedPersValued, setPersValued, 
+          selectedYouValue, setYouValue, 
+          selectedHowFeel, setHowFeel, 
+          selectedValuedPos, setValuedPos
+
         }}>
             {props.children}
         </UserContext.Provider>
