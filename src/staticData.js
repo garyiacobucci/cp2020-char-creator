@@ -23,6 +23,9 @@ const skills = {
       Corp: "Resources",
       Fixer: "Streetdeal"
   },
+  select: {
+      name: 'Select a skill'
+  },
   attr: {
       name: "Attractiveness Skills",
       attr01: "Personal Grooming",

@@ -59,31 +59,57 @@ function UserContextProvider(props) {
 
   // Context and state-dependent methods for pickup skills:
 
-  const [pickupSkills, setPickupSkills] = useState([['Select', 'Select', 0]]);
+  const [pickupSkillCategories, setPickupSkillCategories] = useState(['select']);
+  const [pickupSkills, setPickupSkills] = useState(['select']);
+  const [pickupSkillValues, setPickupSkillValues] = useState([0]);
 
-  const accPickupSkills = pickupSkills.reduce((allTotal, skillArray) => {
-    const value = skillArray[2];
-    return allTotal + value;
+  const accPickupSkills = pickupSkillValues.reduce((a, b) => {
+    return a + b;
   }, 0);
 
-  // This function is used to update the pickupSkills state that is selected by the user. 
-  // This data, as initialized above, consists of an array of arrays, where each element is
-  // an array consisting of ['selected category from pickup skill category dropdown', 
-  // 'selected pickup skill from dropdown', and a numeric value selected by them].
-  const updatePickupSkill = (event, array, targetElement, updatedValue) => {
-    // First, we create a copy of the array to be updated.
-    const updatedPickupSkills = [...pickupSkills];
-    if (targetElement === 2) {
-      // A bit convoluted, but if the targetElement is index 2, it means we're looking to modify the numeric value.
-      // Therefore, we won't extract the updated value from the event.target, but from the optional fourth argument we've passed in.
-      updatedPickupSkills[array][2] = updatedValue;
-    }
-    // Otherwise, we extract the updated information from event.target.value, and finally we call the hook's update function.
-    else updatedPickupSkills[array][targetElement] = event.target.value;
-    setPickupSkills(updatedPickupSkills);
+  const addNewPickupSkillRow = () => {
+    setPickupSkillCategories([...pickupSkillCategories, 'select']);
+    setPickupSkills([...pickupSkills, 'select']);
+    setPickupSkillValues([...pickupSkillValues, 0]);
+    console.log('pickupSkillCategories is ', pickupSkillCategories, ', pickupSkills is ', pickupSkills, ', and pickupSkillValues is ', pickupSkillValues)
   }
 
+  const removePickupSkillRow = (i) => {
+    const updatedPickupSkills = [...pickupSkills];
+    updatedPickupSkills.splice(i, 1);
+    setPickupSkills(updatedPickupSkills);
+    const updatedPickupSkillValues = [...pickupSkillValues];
+    updatedPickupSkillValues.splice(i, 1);
+    setPickupSkillValues(updatedPickupSkillValues);
+    const updatedPickupSkillCategories = [...pickupSkillCategories];
+    updatedPickupSkillCategories.splice(i, 1);
+    setPickupSkillCategories(updatedPickupSkillCategories);
+    }
 
+  const resetPickupSkills = (i) => {
+    const updatedPickupSkills = [...pickupSkills];
+    updatedPickupSkills[i] = 'select';
+    setPickupSkills(updatedPickupSkills);
+  } 
+
+  const updatePickupSkillCategories = (e, i) => {
+    const updatedPickupSkillCategories = [...pickupSkillCategories];
+    updatedPickupSkillCategories[i] = e.target.value;
+    setPickupSkillCategories(updatedPickupSkillCategories);
+    resetPickupSkills(i);
+  }
+
+  const updatePickupSkills = (e, i) => {
+    const updatedPickupSkills = [...pickupSkills];
+    updatedPickupSkills[i] = e.target.value;
+    setPickupSkills(updatedPickupSkills);
+  } 
+
+  const updatePickupSkillValues = (i, amount) => {
+    const updatedPickupSkillValues = [...pickupSkillValues];
+    updatedPickupSkillValues[i] = updatedPickupSkillValues[i]+amount;
+    setPickupSkillValues(updatedPickupSkillValues);
+  }
 
     return (
         <UserContext.Provider value={{
@@ -104,7 +130,9 @@ function UserContextProvider(props) {
           careerSkillPoints, setCareerSkillPoints,
           accSkillPoints,
           role, setRole, manualRole, setManualRole,
-          pickupSkills, setPickupSkills, updatePickupSkill, accPickupSkills
+          addNewPickupSkillRow, removePickupSkillRow, pickupSkillCategories, setPickupSkillCategories, 
+            updatePickupSkillCategories, pickupSkills, setPickupSkills, updatePickupSkills,
+            pickupSkillValues, setPickupSkillValues, updatePickupSkillValues, accPickupSkills
         }}>
             {props.children}
         </UserContext.Provider>
