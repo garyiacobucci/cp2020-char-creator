@@ -22,7 +22,7 @@ const CareerSkills = () => {
       <h5>Career Skill Points Remaining: {40-accSkillPoints}</h5>
 
       {Object.values(career[role]).map((value, i) => (
-        <div className="points-distributor-wrapper" key={i}>
+        <div key={i}>
           <div className="points-distributor-category">
             {value}
           </div>

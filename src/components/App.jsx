@@ -15,12 +15,10 @@ const App = () => {
         <img src={Logo} alt="Cyberpunk 2020 Logo" className="responsive"/>
           <h1>Cyberpunk 2020 Character Generator</h1>
       </div>
-
-      <Info />
-      <Stats />
-      <Role />
-      <CharSheet />
-  
+        <Info />
+        <Stats />
+        <Role />
+        <CharSheet />
     </div>
   )
 }

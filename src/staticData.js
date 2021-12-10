@@ -8,135 +8,179 @@ const d10 = (n) => {
   return rolls;  
 }
 
-const clothes = {
-  1: "Biker leathers",
-  2: "Blue jeans",
-  3: "Corporate suits",
-  4: "Jumpsuits",
-  5: "Miniskirts",
-  6: "High Fashion",
-  7: "Cammos",
-  8: "Normal clothes",
-  9: "Nude",
-  10: "Bag lady chic"
+const clothes = [
+  "Biker leathers",
+  "Blue jeans",
+  "Corporate suits",
+  "Jumpsuits",
+  "Miniskirts",
+  "High Fashion",
+  "Cammos",
+  "Normal clothes",
+  "Nude",
+  "Bag lady chic"
+];
+
+const hairstyle = [
+  "Mohawk",
+  "Long & Ratty",
+  "Short & Spiked",
+  "Wild & all over",
+  "Bald",
+  "Striped",
+  "Tinted",
+  "Neat, short",
+  "Short, curly",
+  "Long, straight"
+];
+
+const affectations = [
+  "Tattoos",
+  "Mirrorshades",
+  "Ritual Scars",
+  "Spiked gloves",
+  "Nose Rings",
+  "Earrings",
+  "Long fingernails",
+  "Spike heel boots",
+  "Weird contact lenses",
+  "Fingerless gloves"
+];
+
+const ethnic = [
+  "Anglo-American",
+  "African",
+  "Japanese/Korean",
+  "Central European/Soviet",
+  "Pacific Islander",
+  "Chinese/Southeast Asian",
+  "Black American",
+  "Hispanic/American",
+  "Central/South American",
+  "European"
+];
+
+const languages = {
+  "Anglo-American": ["English"],
+  "African": ["Bantu", "Fante", "Kongo","Ashanti","Zulu","Swahili"],
+  "Japanese/Korean": ["Japanese", "Korean"],
+  "Central European/Soviet": ["Bulgarian", "Russian", "Czech", "Polish", "Ukranian", "Slovak"],
+  "Pacific Islander": ["Micronesian", "Tagalog", "Polynesian", "Malayan", "Sudanese", "Indonesian", "Hawaiian"],
+  "Chinese/Southeast Asian": ["Burmese", "Cantonese", "Mandarin","Thai", "Tibetan", "Vietnamese"],
+  "Black American": ["English", "Blackfolk"],
+  "Hispanic/American": ["Spanish", "English"],
+  "Central/South American": ["Spanish", "Portuguese"],
+  "European": ["French", "German", "English", "Spanish", "Italian", "Greek", "Danish", "Dutch", "Norwegian", "Swedish"]
 };
 
-const hairstyle = {
-  1: "Mohawk",
-  2: "Long & Ratty",
-  3: "Short & Spiked",
-  4: "Wild & all over",
-  5: "Bald",
-  6: "Striped",
-  7: "Tinted",
-  8: "Neat, short",
-  9: "Short, curly",
-  10: "Long, straight"
-};
+const famRank = [
+  "Corporate Executive",
+  "Corporate Manager",
+  "Corporate Technician",
+  "Nomad Pack",
+  "Pirate Fleet",
+  "Gang family",
+  "Crime Lord",
+  "Combat Zone Poor",
+  "Urban homeless",
+  "Arcology family"
+];
 
-const affectations = {
-  1: "Tattoos",
-  2: "Mirrorshades",
-  3: "Ritual Scars",
-  4: "Spiked gloves",
-  5: "Nose Rings",
-  6: "Earrings",
-  7: "Long fingernails",
-  8: "Spike heel boots",
-  9: "Weird contact lenses",
-  10: "Fingerless gloves"
-};
+const parentStatus = [
+  "Both parents are living",
+  "Something happened to one or both parents"
+];
 
-const famRank = {
-  1: "Corporate Executive",
-  2: "Corporate Manager",
-  3: "Corporate Technician",
-  4: "Nomad Pack",
-  5: "Pirate Fleet",
-  6: "Gang family",
-  7: "Crime Lord",
-  8: "Combat Zone Poor",
-  9: "Urban homeless",
-  10: "Arcology family"
-};
+const parentTragedy = [
+  "Your parent(s) died in warfare",
+  "Your parent(s) died in an accident",
+  "Your parent(s) were murdered",
+  "Your parent(s) have amnesia and don't remember you",
+  "You never knew your parent(s)",
+  "Your parent(s) are in hiding to protect you",
+  "You were left with relatives for safekeeping",
+  "You grew up on the street and never had parents",
+  "Your parent(s) gave you up for adoption",
+  "Your parent(s) sold you for money"
+];
 
-const childEnv = {
-  1: "Spent on the street, with no adult supervision",
-  2: "Spent in a safe corporate suburbia",
-  3: "In a Nomad Pack moving from town to town",
-  4: "In a decarying, once upscale neighborhood",
-  5: "In a defended corporate zone in the central City",
-  6: "In the heart of the combat zone",
-  7: "In a small village or town far from the city",
-  8: "In a large arcology city",
-  9: "In an aquatic pirate pack",
-  10: "On a corporate controlled farm or research facility"
-};
+const childEnv = [
+  "Spent on the street, with no adult supervision",
+  "Spent in a safe corporate suburbia",
+  "In a Nomad Pack moving from town to town",
+  "In a decarying, once upscale neighborhood",
+  "In a defended corporate zone in the central City",
+  "In the heart of the combat zone",
+  "In a small village or town far from the city",
+  "In a large arcology city",
+  "In an aquatic pirate pack",
+  "On a corporate controlled farm or research facility"
+];
 
-const persTraits = {
-  1: "Shy and secretive",
-  2: "Rebellious, antisocial, violent",
-  3: "Arrogant, proud, aloof",
-  4: "Moody, rash and headstrong",
-  5: "Picky, fussy and nervous",
-  6: "Stable and serious",
-  7: "Silly and fluffheaded",
-  8: "Sneaky and deceptive",
-  9: "Intellectual and detached",
-  10: "Friendly and outgoing"
-};
+const persTraits = [
+  "Shy and secretive",
+  "Rebellious, antisocial, violent",
+  "Arrogant, proud, aloof",
+  "Moody, rash and headstrong",
+  "Picky, fussy and nervous",
+  "Stable and serious",
+  "Silly and fluffheaded",
+  "Sneaky and deceptive",
+  "Intellectual and detached",
+  "Friendly and outgoing"
+];
 
-const persValued = {
-  1: "A parent (or guardian)",
-  2: "Brother or sister",
-  3: "Lover",
-  4: "Friend",
-  5: "Yourself",
-  6: "A pet",
-  7: "Teacher or mentor",
-  8: "Public figure",
-  9: "A personal hero",
-  10: "No one"
-};
+const persValued = [
+  "A parent (or guardian)",
+  "Brother or sister",
+  "Lover",
+  "Friend",
+  "Yourself",
+  "A pet",
+  "Teacher or mentor",
+  "Public figure",
+  "A personal hero",
+  "No one"
+];
 
-const youValue = {
-  1: "Money",
-  2: "Honor",
-  3: "Your word",
-  4: "Honesty",
-  5: "Knowledge",
-  6: "Vengeance",
-  7: "Love",
-  8: "Power",
-  9: "Having a good time",
-  10: "Friendship"
-};
+const youValue = [
+  "Money",
+  "Honor",
+  "Your word",
+  "Honesty",
+  "Knowledge",
+  "Vengeance",
+  "Love",
+  "Power",
+  "Having a good time",
+  "Friendship"
+];
 
-const howFeel = {
-  1: "Neutral",
-  2: "Neutral",
-  3: "I like almost everyone",
-  4: "I hate almost everyone",
-  5: "People are tools. Use them for your own goals and discard them",
-  6: "Every person is a valuable individual",
-  7: "People are obstacles to be destroyed if they cross me",
-  8: "People are untrustworthy. Don't depend on anyone",
-  9: "Wipe 'em all out and give the place to the cockroaches",
-  10: "People are wonderful"
-};
+const howFeel = [
+  "Neutral",
+  "Neutral",
+  "I like almost everyone",
+  "I hate almost everyone",
+  "People are tools. Use them for your own goals and discard them",
+  "Every person is a valuable individual",
+  "People are obstacles to be destroyed if they cross me",
+  "People are untrustworthy. Don't depend on anyone",
+  "Wipe 'em all out and give the place to the cockroaches",
+  "People are wonderful"
+];
 
-const valuedPos = {
-  1: "A weapon",
-  2: "A tool",
-  3: "A piece of clothing",
-  4: "A photograph",
-  5: "A book or diary",
-  6: "A recording",
-  7: "A musical instrument",
-  8: "A piece of jewelry",
-  9: "A toy",
-  10: "A letter"
-};
+const valuedPos = [
+  "A weapon",
+  "A tool",
+  "A piece of clothing",
+  "A photograph",
+  "A book or diary",
+  "A recording",
+  "A musical instrument",
+  "A piece of jewelry",
+  "A toy",
+  "A letter"
+];
 
 
 
@@ -390,4 +434,4 @@ const career = {
 }
 
 
-export { d10, clothes, hairstyle, affectations, famRank, childEnv, persTraits, persValued, youValue, howFeel, valuedPos, skills, career}
+export { d10, clothes, hairstyle, affectations, famRank, ethnic, languages, parentStatus, parentTragedy, childEnv, persTraits, persValued, youValue, howFeel, valuedPos, skills, career}

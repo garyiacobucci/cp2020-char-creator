@@ -115,7 +115,11 @@ function UserContextProvider(props) {
   const [selectedAffectations, setSelectedAffectations] = useState('select');
 
   // State for family background
+  const [selectedEthnicity, setEthnicity] = useState('select');
+  const [selectedLanguage, setLanguage] = useState('select');
   const [selectedFamRank, setFamRank] = useState('select');
+  const [selectedParentStatus, setParentStatus] = useState('select');
+  const [selectedParentTragedy, setParentTragedy] = useState('select');
   const [selectedChildEnv, setChildEnv] = useState('select');
   
   // State for personality
@@ -151,7 +155,11 @@ function UserContextProvider(props) {
           selectedClothes, setSelectedClothes, 
           selectedHairstyle, setSelectedHairstyle, 
           selectedAffectations, setSelectedAffectations,
+          selectedEthnicity, setEthnicity,
+          selectedLanguage, setLanguage,
           selectedFamRank, setFamRank, 
+          selectedParentStatus, setParentStatus,
+          selectedParentTragedy,setParentTragedy,
           selectedChildEnv, setChildEnv, 
           selectedPersTraits, setPersTraits, 
           selectedPersValued, setPersValued, 

@@ -1,7 +1,5 @@
 @import url(./Assets/Fonts/fonts.scss);
 
-//Class style rules:
-
 body {
   // Overrides default 8px margin on some browsers
   margin: 0px;
@@ -29,10 +27,15 @@ input {
   color: #D90452;
 }
 
+.component-wrapper {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
   background-color: #011126;
-  display: flex;
-  flex-direction: column;
   .header {
       background-image: url('./Assets/Images/header_background.jpg');
       background-size: cover;
@@ -48,46 +51,17 @@ input {
   }
 }
 
-.points-distributor-wrapper {
-  display: flex;
-  flex-direction: row;
-  .points-distributor-category {
-    width: 33%;
-    text-align: center;
-  }
-  .points-distributor-control-panel {
-    width: 33%;
-    text-align: center;
-  }
-  .points-distributor-value {
-    width: 33%;
-    text-align: center;
-  }
-}
+
 
 .responsive {
   max-width: 900px;
   height: auto;
 }
 
-.pickup-skills-wrapper {
-  background-color: #011126;
-  display: flex;
-  flex-direction: row;
-}
-
-.split-display {
-  display: flex;
-  flex-direction: row;
-  .split-display-child {
-    width: 50%;
-  }
-}
-
 .widget {
-  align-self: center;
-  max-width: 900px;
-  background-color: #011C40;
+  width:600px;
+  //background-color: #011C40;
+  background-color:rgb(93, 96, 128);
   margin: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
