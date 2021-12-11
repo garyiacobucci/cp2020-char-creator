@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { 
-  Button,
-  FormControlLabel, FormControl, FormLabel,
+  FormControlLabel, FormControl,
   Radio, RadioGroup 
 } from '@material-ui/core';
 import { UserContext } from '../UserContext';
-import { d10 } from '../staticData.js';
+import PointsDistributor from './PointsDistributor';
+import { diceRoll, randRollMethodOptions } from '../staticData.js';
 
 const Stats = () => {
 
@@ -36,12 +36,14 @@ const Stats = () => {
     else hookName(value);
   }
 
+  const reducedCharPointsRoll = (charPointsRoll.reduce((a,b)=>a+b,0));
+
   return (
     <div className="component-wrapper">
       <div className="widget">
         <h2>Randomize Everything?</h2>
         <p>Clicking "Randomize Everything" button below will randomly select everything: Roll Method, Stats, Role, Skills, Style, Background, etc.</p>
-        <div><Button variant="contained" onClick={toggleTheme}>Randomize Everything</Button></div>
+        <div><button onClick={toggleTheme}>Randomize Everything</button></div>
       </div>
 
       <div className="widget">
@@ -55,23 +57,25 @@ const Stats = () => {
             name="commentText"
             value={userHandle}
           />
+          <p>Need inspiration? Here's a
+            <a href="https://www.fantasynamegenerators.com/cyberpunk-names.php" target="_blank"> Cyberpunk name generator</a>.</p>
         </form>
       </div>
 
       <div className="widget">
         <h2>Statistics</h2>
-        <p>Each character has nine Statistics -- values representing the level of native ability of the character in specific areas of activity.</p>
-        <h4>Character Points; Choose Roll Method:</h4>
-        <p>(Click a roll method; click again to re-roll)</p>
-
+        <h3>Character Points</h3>
+        <p>Character Points are the cash of character creation--you can use them to "buy" the various "mechanics"
+          aspects of the character, like good looks, a strong, hard body, unshakable cool and street smarts (but not 
+          Skills). To continue, select a method of determining your points count: 
+        </p>
         <div>
           <FormControl component="fieldset">
             <RadioGroup
               aria-label="Roll Method"
               name="roll-method-radio-group"
             >
-              <FormControlLabel value="random" control={<Radio />} label="Random" onClick={() => setRollMethod('Random')} />
-              <FormControlLabel value="fast" control={<Radio />} label="Fast" onClick={() => {setRollMethod('Fast');assignCharPointsRoll(d10(9))}} />
+              <FormControlLabel value="fast" control={<Radio />} label="Fast" onClick={() => {setRollMethod('Fast');assignCharPointsRoll(diceRoll(10, 9))}} />
               <FormControlLabel value="cineMajorHero" control={<Radio />} label="Major Hero" onClick={() => {setRollMethod('Major Hero');assignCharPointsRoll([80])}} />
               <FormControlLabel value="cineMajorSuppChar" control={<Radio />} label="Major Supporting Character" onClick={() => {setRollMethod('Major Supporting Character');assignCharPointsRoll([70])}} />
               <FormControlLabel value="cineMinorHero" control={<Radio />} label="Minor Hero" onClick={() => {setRollMethod('Minor Hero');assignCharPointsRoll([75])}} />
@@ -79,7 +83,8 @@ const Stats = () => {
               <FormControlLabel value="average" control={<Radio />} label="Average" onClick={() => {setRollMethod('Average');assignCharPointsRoll([50])}} />
               <FormControlLabel value="manual" control={<Radio />} label="Manually Enter Value" onClick={() => {setRollMethod('Manually Enter')}} />
             </RadioGroup>
-          </FormControl>              
+          </FormControl>
+          <div><button onClick={()=>{setRollMethod(randRollMethodOptions[diceRoll(6,1)-1][0]);assignCharPointsRoll(randRollMethodOptions[diceRoll(6,1)-1][1])}}>Randomize</button></div>         
         </div>
         <div>
           <p>Roll method: {rollMethod}</p>
@@ -95,7 +100,7 @@ const Stats = () => {
           {charPointsRoll.length > 1 ? 
             <div>
               <p>Rolls: {charPointsRoll && charPointsRoll.join(', ')}</p>
-              <p>Points Total: {charPointsRoll && charPointsRoll.reduce(((a, b) => a + b))}</p>
+              <p>Points Total: {charPointsRoll && reducedCharPointsRoll}</p>
             </div> : 
             <div>
               <p>Points Total: {charPointsRoll}</p>
@@ -105,126 +110,132 @@ const Stats = () => {
       </div>
 
       <div className="widget">
-        <h3>User Assigned Stats</h3>
-        <p>You must choose a roll method above before you can edit these fields.</p>
-        <h4>Stats Points Remaining: {charPointsRoll-accAssignedPoints}</h4>
+        <h3>User-Assigned Stats</h3>
+        <p>Each Cyberpunk character has nine Statistics—values representing the level of native ability
+           of the character in specific areas of activity. These Stats are rated from two to ten, with 
+           two being the worst possible, ten being the best possible, and the average falling at about 
+           five or six. Divide your total number of Character Points between each of your nine Stats, 
+           adjusting the amounts in each one as you think best describes the character's natural abilities. 
+           No Statistic may be less than two or greater than ten. 
+        </p>
 
-        <div className="points-distributor-wrapper">
-          <div className="points-distributor-category">
-            Intelligence (INT)
-          </div>
-          <div className="points-distributor-control-panel">
-            <Button variant="contained" onClick={(e) => setIntPoints(intPoints+1)} disabled={(!charPointsHaveBeenRolled || charPointsRoll-accAssignedPoints<1)}>+</Button>
-            <Button variant="contained" onClick={(e) => setIntPoints(intPoints-1)} disabled={(!charPointsHaveBeenRolled || intPoints<1)}>-</Button>
-          </div>
-          <div className="points-distributor-value">
-            {intPoints}
-          </div>
+        {(charPointsHaveBeenRolled) ? 
+        
+        <div>
+          <p className="callout">Stats Points to Distribute: {reducedCharPointsRoll-accAssignedPoints}</p>
+
+          <PointsDistributor 
+            pointValue={intPoints} 
+            categoryName={'Intelligence'} 
+            categoryShorthand={'INT'}
+            addCallback={(e) => setIntPoints(intPoints+1)}
+            subCallback={(e) => setIntPoints(intPoints-1)}
+            description={`This is a measure of your problem solving ability; figuring out problems, noticing things, 
+            remembering information. Almost every character type will need a high Intelligence, with 
+            Netrunners and Corporates requiring the highest of all.`} 
+          />
+
+          <PointsDistributor 
+            pointValue={refPoints} 
+            categoryName={'Reflexes'} 
+            categoryShorthand={'REF'}
+            addCallback={(e) => setRefPoints(refPoints+1)}
+            subCallback={(e) => setRefPoints(refPoints-1)}
+            description={`This is a combined index, covering not only your basic dexterity, but also how your 
+            level of physical coordination will affect feats of driving, piloting, fighting and 
+            athletics. Characters who intend to engage in a great deal of combat (such as Solos, 
+            Nomads or Rockerboys) should always invest in the highest possible Reflex.`}
+          />
+
+          <PointsDistributor 
+            pointValue={coolPoints} 
+            categoryName={'Cool'} 
+            categoryShorthand={'COOL'}
+            addCallback={(e) => setCoolPoints(coolPoints+1)}
+            subCallback={(e) => setCoolPoints(coolPoints-1)}
+            description={`This index measures how well the character stands up to stress, fear, pressure, physical pain 
+            and/or torture. In determining your willingness to fight on despite wounds oryourfighting ability
+            under fire, Cool (CL) is essential. It is also the measure of how "together" your character is and
+            how tough he appears to others. Rockerboys and Fixers should always have a high Cool, with Solos
+            and Nomads having the highest of all.`}
+          />
+
+          <PointsDistributor 
+            pointValue={techPoints} 
+            categoryName={'Tech'} 
+            categoryShorthand={'TECH'}
+            addCallback={(e) => setTechPoints(techPoints+1)}
+            subCallback={(e) => setTechPoints(techPoints-1)}
+            description={`This is an index of how well you relate to hardware and other technically oriented things. 
+            In Cyberpunk, the ability to use and repair technology is of paramount importance—TECH will 
+            be the Stat used when fixing, repairing and attempting to use unfamiliar tech. While all 
+            characters should have a decent Tech Stat, potential Techies should always opt for the 
+            highest possible score in this area.`}
+          />
+
+          <PointsDistributor 
+            pointValue={attPoints} 
+            categoryName={'Attractiveness'} 
+            categoryShorthand={'ATT'}
+            addCallback={(e) => setAttPoints(attPoints+1)}
+            subCallback={(e) => setAttPoints(attPoints-1)}
+            description={`This is how good-looking you are. In Cyberpunk, it's not enough to be good—you have to look 
+            good while you're doing it (Attitude is Everything). Attractiveness is especially important to 
+            Medias and Rockerboys, as being good-looking is part of their jobs.`}
+          />
+
+          <PointsDistributor 
+            pointValue={luckPoints} 
+            categoryName={'Luck'} 
+            categoryShorthand={'LUCK'}
+            addCallback={(e) => setLuckPoints(luckPoints+1)}
+            subCallback={(e) => setLuckPoints(luckPoints-1)}
+            description={`This is the intangible "something" that throws the balance of events into your favor. Your luck represents
+            how many points you may use each game to influence the outcome of a critical event. To use Luck, you may add
+            any or all of the points of luck a character has to a critical die roll (declaring your inetntion to use Luck
+            before the roll is made) until all of your Luck stat is used up. Luck is always restored at the end of each 
+            game session.`}
+          />
+
+          <PointsDistributor 
+            pointValue={maPoints} 
+            categoryName={'Movement Allowance'} 
+            categoryShorthand={'MA'}
+            addCallback={(e) => setMaPoints(maPoints+1)}
+            subCallback={(e) => setMaPoints(maPoints-1)}
+            description={`This is an index of how fast your character can run (important in combat situations). The higher your Movement 
+            Allowance (MA), the more distance you can cover in a turn. (Affects RUN and LEAP)`}
+          />
+
+          <PointsDistributor 
+            pointValue={bodyPoints} 
+            categoryName={'Body Type'} 
+            categoryShorthand={'BODY'}
+            addCallback={(e) => setBodyPoints(bodyPoints+1)}
+            subCallback={(e) => setBodyPoints(bodyPoints-1)}
+            description={`Strength, Endurance and Constitution are all based on the character's Body Type. Body Type determines how 
+            much damage you can take in wounds, how much you can lift or carry, how far you can throw, how well
+            you recover from shock, and how much additional damage you cause with physical attacks. Body Type is 
+            important to all character types, but to Solos, Rockerboys and Nomads most of all. (Affects CARRY and LIFT)`}
+          />
+
+          <PointsDistributor 
+            pointValue={empPoints} 
+            categoryName={'Empathy'} 
+            categoryShorthand={'EMP'}
+            addCallback={(e) => setEmpPoints(empPoints+1)}
+            subCallback={(e) => setEmpPoints(empPoints-1)}
+            description={<>This Stat represents how well you relate to other living things—a measure of charisma and sympathetic 
+            emotions. In a world of alienated, future-shocked survivors, the ability to be "human" can no longer be
+            taken for granted. Empathy (EM) is critical when leading, convincing, seducing, or perceiving emotional
+            undercurrents. Empathy is also a measure of how close he/she is to the line between feeling human being
+            and <a href="https://cyberpunk.fandom.com/wiki/Cyberpsychosis" target="_blank">cold-blooded cyber-monster</a>.</>}
+          />
         </div>
+        : <div>Select a method of Character Point roll to assign</div> }
 
-        <div className="points-distributor-wrapper">
-          <div className="points-distributor-category">
-              Reflexes (REF)
-            </div>
-            <div className="points-distributor-control-panel">
-              <Button variant="contained" onClick={(e) => setRefPoints(refPoints+1)} disabled={(!charPointsHaveBeenRolled || charPointsRoll-accAssignedPoints<1)}>+</Button>
-              <Button variant="contained" onClick={(e) => setRefPoints(refPoints-1)} disabled={(!charPointsHaveBeenRolled || refPoints<1)}>-</Button>
-            </div>
-            <div className="points-distributor-value">
-              {refPoints}
-            </div>
-          </div>
+  
 
-          <div className="points-distributor-wrapper">
-            <div className="points-distributor-category">
-              Technical Ability (TECH)
-            </div>
-            <div className="points-distributor-control-panel">
-              <Button variant="contained" onClick={(e) => setTechPoints(techPoints+1)} disabled={(!charPointsHaveBeenRolled || charPointsRoll-accAssignedPoints<1)}>+</Button>
-              <Button variant="contained" onClick={(e) => setTechPoints(techPoints-1)} disabled={(!charPointsHaveBeenRolled || techPoints<1)}>-</Button>
-            </div>
-            <div className="points-distributor-value">
-              {techPoints}
-            </div>
-          </div>
-
-          <div className="points-distributor-wrapper">
-            <div className="points-distributor-category">
-              Cool (COOL)
-            </div>
-            <div className="points-distributor-control-panel">
-              <Button variant="contained" onClick={(e) => setCoolPoints(coolPoints+1)} disabled={(!charPointsHaveBeenRolled || charPointsRoll-accAssignedPoints<1)}>+</Button>
-              <Button variant="contained" onClick={(e) => setCoolPoints(coolPoints-1)} disabled={(!charPointsHaveBeenRolled || coolPoints<1)}>-</Button>
-            </div>
-            <div className="points-distributor-value">
-              {coolPoints}
-            </div>
-          </div>
-
-          <div className="points-distributor-wrapper">
-            <div className="points-distributor-category">
-              Attractiveness (ATT)
-            </div>
-            <div className="points-distributor-control-panel">
-              <Button variant="contained" onClick={(e) => setAttPoints(attPoints+1)} disabled={(!charPointsHaveBeenRolled || charPointsRoll-accAssignedPoints<1)}>+</Button>
-              <Button variant="contained" onClick={(e) => setAttPoints(attPoints-1)} disabled={(!charPointsHaveBeenRolled || attPoints<1)}>-</Button>
-            </div>
-            <div className="points-distributor-value">
-              {attPoints}
-            </div>
-          </div>
-
-          <div className="points-distributor-wrapper">
-            <div className="points-distributor-category">
-              Luck (LUCK)
-            </div>
-            <div className="points-distributor-control-panel">
-              <Button variant="contained" onClick={(e) => setLuckPoints(luckPoints+1)} disabled={(!charPointsHaveBeenRolled || charPointsRoll-accAssignedPoints<1)}>+</Button>
-              <Button variant="contained" onClick={(e) => setLuckPoints(luckPoints-1)} disabled={(!charPointsHaveBeenRolled || luckPoints<1)}>-</Button>
-            </div>
-            <div className="points-distributor-value">
-              {luckPoints}
-            </div>
-          </div>
-
-          <div className="points-distributor-wrapper">
-            <div className="points-distributor-category">
-              Movement Allowance (MA)
-            </div>
-            <div className="points-distributor-control-panel">
-              <Button variant="contained" onClick={(e) => setMaPoints(maPoints+1)} disabled={(!charPointsHaveBeenRolled || charPointsRoll-accAssignedPoints<1)}>+</Button>
-              <Button variant="contained" onClick={(e) => setMaPoints(maPoints-1)} disabled={(!charPointsHaveBeenRolled || maPoints<1)}>-</Button>
-            </div>
-            <div className="points-distributor-value">
-              {maPoints}
-            </div>
-          </div>
-
-          <div className="points-distributor-wrapper">
-            <div className="points-distributor-category">
-              Body Type (BODY)
-            </div>
-            <div className="points-distributor-control-panel">
-              <Button variant="contained" onClick={(e) => setBodyPoints(bodyPoints+1)} disabled={(!charPointsHaveBeenRolled || charPointsRoll-accAssignedPoints<1)}>+</Button>
-              <Button variant="contained" onClick={(e) => setBodyPoints(bodyPoints-1)} disabled={(!charPointsHaveBeenRolled || bodyPoints<1)}>-</Button>
-            </div>
-            <div className="points-distributor-value">
-              {bodyPoints}
-            </div>
-          </div>
-
-          <div className="points-distributor-wrapper">
-            <div className="points-distributor-category">
-              Empathy (EMP))
-            </div>
-            <div className="points-distributor-control-panel">
-              <Button variant="contained" onClick={(e) => setEmpPoints(empPoints+1)} disabled={(!charPointsHaveBeenRolled || charPointsRoll-accAssignedPoints<1)}>+</Button>
-              <Button variant="contained" onClick={(e) => setEmpPoints(empPoints-1)} disabled={(!charPointsHaveBeenRolled || empPoints<1)}>-</Button>
-            </div>
-            <div className="points-distributor-value">
-              {empPoints}
-            </div>
-          </div>
 
         <h3>Derived Stats</h3>
         <p>Below fields are automatically calculated.</p>

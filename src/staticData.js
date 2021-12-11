@@ -1,12 +1,21 @@
 // Simulate a d10 roll n times. Returns an array of rolls.
-const d10 = (n) => {
+const diceRoll = (sides, n) => {
   const rolls = new Array;
   for (let i = 0; i < n; i++) {
-    let roll = Math.floor(Math.random() * 10) + 1;
-    rolls.push(roll); 
+    let roll = Math.floor(Math.random() * sides) + 1;
+    rolls.push(roll);
   }
   return rolls;  
 }
+
+const randRollMethodOptions = [
+    ['Fast',diceRoll(10,9)],
+    ['Major Hero', [80]],
+    ['Major Supporting Character', [70]],
+    ['Minor Hero', [75]],
+    ['Minor Supporting Character', [60]],
+    ['Average', [50]]
+]
 
 const clothes = [
   "Biker leathers",
@@ -108,7 +117,7 @@ const childEnv = [
   "Spent on the street, with no adult supervision",
   "Spent in a safe corporate suburbia",
   "In a Nomad Pack moving from town to town",
-  "In a decarying, once upscale neighborhood",
+  "In a decaying, once upscale neighborhood",
   "In a defended corporate zone in the central City",
   "In the heart of the combat zone",
   "In a small village or town far from the city",
@@ -158,8 +167,6 @@ const youValue = [
 
 const howFeel = [
   "Neutral",
-  "Neutral",
-  "I like almost everyone",
   "I hate almost everyone",
   "People are tools. Use them for your own goals and discard them",
   "Every person is a valuable individual",
@@ -181,8 +188,6 @@ const valuedPos = [
   "A toy",
   "A letter"
 ];
-
-
 
 const skills = {
   special: {
@@ -434,4 +439,5 @@ const career = {
 }
 
 
-export { d10, clothes, hairstyle, affectations, famRank, ethnic, languages, parentStatus, parentTragedy, childEnv, persTraits, persValued, youValue, howFeel, valuedPos, skills, career}
+export { diceRoll, clothes, hairstyle, affectations, famRank, ethnic, languages, parentStatus, 
+  parentTragedy, childEnv, persTraits, persValued, youValue, howFeel, valuedPos, skills, career, randRollMethodOptions}

@@ -1,24 +1,23 @@
 import React from 'react';
 import './../styles.scss';
+import Header from './Header';
 import Stats from './Stats';
 import Role from './Role';
 import CharSheet from './CharSheet';
 import Info from './Info';
-
-// Import static assets
-import Logo from './../Assets/Images/cp2020-logo.png';
+import Footer from './Footer';
 
 const App = () => {
   return (
     <div className="container">
-      <div className="header">
-        <img src={Logo} alt="Cyberpunk 2020 Logo" className="responsive"/>
-          <h1>Cyberpunk 2020 Character Generator</h1>
-      </div>
+      <Header />
+      <div className="column-container">
         <Info />
         <Stats />
         <Role />
         <CharSheet />
+        <Footer />
+      </div>
     </div>
   )
 }

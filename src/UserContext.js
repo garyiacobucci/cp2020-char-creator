@@ -28,22 +28,22 @@ function UserContextProvider(props) {
       if (!charPointsHaveBeenRolled) setCharPointsHaveBeenRolled(true);
     }
 
-    const [intPoints, setIntPoints] = useState(0);
-    const [refPoints, setRefPoints] = useState(0);
-    const [techPoints, setTechPoints] = useState(0);
-    const [coolPoints, setCoolPoints] = useState(0);
-    const [attPoints, setAttPoints] = useState(0);
-    const [luckPoints, setLuckPoints] = useState(0);
-    const [maPoints, setMaPoints] = useState(0);
-    const [bodyPoints, setBodyPoints] = useState(0);
-    const [empPoints, setEmpPoints] = useState(0);
+    const [intPoints, setIntPoints] = useState(5);
+    const [refPoints, setRefPoints] = useState(5);
+    const [techPoints, setTechPoints] = useState(5);
+    const [coolPoints, setCoolPoints] = useState(5);
+    const [attPoints, setAttPoints] = useState(5);
+    const [luckPoints, setLuckPoints] = useState(5);
+    const [maPoints, setMaPoints] = useState(5);
+    const [bodyPoints, setBodyPoints] = useState(5);
+    const [empPoints, setEmpPoints] = useState(5);
 
     const accAssignedPoints = 
       intPoints+refPoints+techPoints+coolPoints+attPoints+luckPoints+maPoints+bodyPoints+empPoints;
 
     // State for Career Skills points:
 
-    const [careerSkillPoints, setCareerSkillPoints] = useState({1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0,10:0,11:0,12:0});
+    const [careerSkillPoints, setCareerSkillPoints] = useState({1:4,2:4,3:4,4:4,5:4,6:4,7:4,8:4,9:4,10:4,11:0,12:0});
 
     const accSkillPoints = 
       Object.values(careerSkillPoints).reduce(function (sum, value) {
@@ -58,9 +58,9 @@ function UserContextProvider(props) {
 
   // Context and state-dependent methods for pickup skills:
 
-  const [pickupSkillCategories, setPickupSkillCategories] = useState(['select']);
-  const [pickupSkills, setPickupSkills] = useState(['select']);
-  const [pickupSkillValues, setPickupSkillValues] = useState([0]);
+  const [pickupSkillCategories, setPickupSkillCategories] = useState([]);
+  const [pickupSkills, setPickupSkills] = useState([]);
+  const [pickupSkillValues, setPickupSkillValues] = useState([]);
 
   const accPickupSkills = pickupSkillValues.reduce((a, b) => {
     return a + b;
@@ -121,6 +121,28 @@ function UserContextProvider(props) {
   const [selectedParentStatus, setParentStatus] = useState('select');
   const [selectedParentTragedy, setParentTragedy] = useState('select');
   const [selectedChildEnv, setChildEnv] = useState('select');
+
+  // State and functionality for siblings
+  const [siblings, setSiblings] = useState([]);
+
+  const addSibling = () => {
+    const updatedSiblings = [...siblings];
+    updatedSiblings[updatedSiblings.length] = {gender: 'select', age: 'select', feeling: 'select'};
+    setSiblings(updatedSiblings);
+  }
+
+  const removeSibling = (i) => {
+    const updatedSiblings = [...siblings];
+    updatedSiblings.splice(i, 1);
+    setSiblings(updatedSiblings);
+  }
+  
+  const updateSibling = (sibling, key, newValue) => {
+    // Will modify the value at the provided sibling index's key.
+    const updatedSiblings = [...siblings];
+    updatedSiblings[sibling][key] = newValue;
+    setSiblings(updatedSiblings);
+  }
   
   // State for personality
   const [selectedPersTraits, setPersTraits] = useState('select');
@@ -160,6 +182,7 @@ function UserContextProvider(props) {
           selectedFamRank, setFamRank, 
           selectedParentStatus, setParentStatus,
           selectedParentTragedy,setParentTragedy,
+          siblings, setSiblings, addSibling, removeSibling, updateSibling,
           selectedChildEnv, setChildEnv, 
           selectedPersTraits, setPersTraits, 
           selectedPersValued, setPersValued, 

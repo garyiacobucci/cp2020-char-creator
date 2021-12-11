@@ -5,16 +5,13 @@ import {
   Radio, RadioGroup 
 } from '@material-ui/core';
 import { UserContext } from '../UserContext';
-import CareerSkills from './CareerSkills';
 import { skills } from './../staticData';
 
 const PickupSkillsMenu = (props) => {
 
   //Connect to UserContext via Context API:
   const {
-    refPoints, intPoints,
-    role, setRole, manualRole, setManualRole,
-    addNewPickupSkillRow, pickupSkillCategories, updatePickupSkillCategories, pickupSkills, updatePickupSkills, pickupSkillValues, updatePickupSkillValues, accPickupSkills
+    pickupSkillCategories, pickupSkills, updatePickupSkills
   } = useContext(UserContext);
 
   const { i } = props;
