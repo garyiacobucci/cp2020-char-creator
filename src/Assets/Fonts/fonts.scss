@@ -1,36 +1,52 @@
-@font-face {
-  font-family: 'Open Sans Italic';
-  /*src: url('./OpenSansItalic.eot');*/
-  src: /*url('./OpenSansItalic.eot?#iefix') format('embedded-opentype'),
-       url('./OpenSansItalic.woff') format('woff'),*/
-       url('./OpenSans-Italic.ttf') format('truetype')/*,
-       url('./OpenSansItalic.svg#OpenSansItalic') format('svg')*/;
-  font-weight: normal;
-  font-style: italic;
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+
+a {
+  color: #29cece;
+  text-decoration: none;
+}
+
+a:hover {
+  color: yellow; 
+  text-decoration:none; 
+  cursor:pointer;  
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  color: #FFF;
+  font-family: 'Play', sans-serif;
+  color: #03A6A6;
+}
+
+button {
+  font-family: 'Play', sans-serif;
+}
+
+.callout {
+  font-size: x-large;
+  font-weight: 700;
 }
 
 h1 {
   color: #FFF;
 }
 
+h2 {
+  color: #FFF;
+}
+
+/*
 // Responsive layout media query specifics:
 @media (min-width:576px) {
-  h1 {
+  body {
     font-size: 22px;
   }
 }
 @media (min-width:768px) {
-  h1 {
+  body {
     font-size: 24px;
   }
 }
 @media (min-width:992px) {
-  h1 {
+  body {
     font-size: 34px;
   }
-}
+}*/
