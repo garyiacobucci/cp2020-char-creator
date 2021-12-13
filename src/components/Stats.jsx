@@ -48,7 +48,7 @@ const Stats = () => {
 
       <div className="widget">
         <h2>Handle</h2>
-        <p>Handle (name):</p>
+        <p>What do they call you on the streets, choom?</p>
         <form>
           <input
             type="text"
@@ -65,7 +65,7 @@ const Stats = () => {
       <div className="widget">
         <h2>Statistics</h2>
         <h3>Character Points</h3>
-        <p>Character Points are the cash of character creation--you can use them to "buy" the various "mechanics"
+        <p>Character Points are the cash of character creation—you can use them to "buy" the various "mechanics"
           aspects of the character, like good looks, a strong, hard body, unshakable cool and street smarts (but not 
           Skills). To continue, select a method of determining your points count: 
         </p>
@@ -232,7 +232,7 @@ const Stats = () => {
             and <a href="https://cyberpunk.fandom.com/wiki/Cyberpsychosis" target="_blank">cold-blooded cyber-monster</a>.</>}
           />
         </div>
-        : <div>Select a method of Character Point roll to assign</div> }
+        : <div className="warning">You must determine your Character Points before you can assign them (See above)!</div> }
 
   
 

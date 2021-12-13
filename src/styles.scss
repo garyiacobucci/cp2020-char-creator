@@ -26,9 +26,9 @@ input {
     background: transparent;
     border: none;
     outline: none;
-    color:lime;
+    color:white;
     font-family: 'Play', sans-serif;
-    font-size: 24px;
+    font-size: xx-large;
 }
 
 ul {
@@ -87,6 +87,10 @@ ul {
   align-items: center;
 }
 
+.fine-print {
+  font-size: small;
+}
+
 .footer {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -139,4 +143,8 @@ ul {
   padding: 3px 5px 3px 7px;
   font-size: small;
   font-weight: 700;
+}
+
+.warning {
+  color: hotpink;
 }

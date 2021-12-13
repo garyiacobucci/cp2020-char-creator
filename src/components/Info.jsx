@@ -14,10 +14,9 @@ const Info = (props) => {
         <span className="callout">Use this cyberdeck application to assist in developing your Player Character for R. Talsorian Games' iconic
           tabletop roleplaying game of the dark future. //
         </span>
-        <ul>
-          <li>Source code <a href="https://githubhelp.com/garyiacobucci/cp2020-char-creator" target="_blank">available on GitHub</a></li>
-          <li>Generator built by <a href="https://githubhelp.com/garyiacobucci" target="_blank">Giovanni Iacobucci</a>, developed from an earlier <a href="https://github.com/ericdorsey/cp2020" target="_blank">project</a> by Eric Dorsey</li>
-        </ul>
+        <p>Generator built by <a href="https://githubhelp.com/garyiacobucci" target="_blank">Giovanni Iacobucci</a>, 
+        inspired by an earlier <a href="https://github.com/ericdorsey/cp2020" target="_blank">project</a> by Eric Dorsey. 
+        Source code <a href="https://githubhelp.com/garyiacobucci/cp2020-char-creator" target="_blank">available on GitHub.</a></p>
       </div>
 
     </div>
