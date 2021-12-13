@@ -25,7 +25,7 @@ module.exports = {
         },
       },*/
       {
-        test: /\.png/,
+        test: /\.(woff|woff2|eot|ttf|svg|jpg|png)$/,
         type: 'asset/resource'
       }      
     ]
@@ -34,7 +34,6 @@ module.exports = {
     extensions: ['*', '.js', '.jsx']
   },
   output: {
-    //path: path.resolve(__dirname, './public'),
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
