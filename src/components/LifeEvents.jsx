@@ -1,12 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { UserContext } from '../UserContext';
 
 const LifeEvents = () => {
 
   //Connect to UserContext via Context API:
   const {
-    userHandle
+    userHandle, age, setAge, lifeEvents, updateLifeEvents
   } = useContext(UserContext);
+
+  useEffect(() => {
+    console.log(lifeEvents);
+}, [lifeEvents]);
 
   return (
     <div className="widget">
@@ -18,9 +22,14 @@ const LifeEvents = () => {
         shaped their life for that year.
       </p>
       <span className="callout">Age</span>
-      <span className="fine-print">&nbsp;(Must be a value between 17 and 99):</span><br />
-      <button>Generate Lifepath</button><br />
-      <input type="checkbox" id="preventNothing" /> <span className="fine-print">Check to prevent "Nothing Happened This Year" events.</span>
+      <span className="fine-print">&nbsp;(Must be a value between 17 and 99):</span>
+      <div className="callout">{age}</div>
+      <button onClick={updateLifeEvents}>Generate Lifepath</button><br />
+      <input type="checkbox" id="preventNothing" />
+        <span className="fine-print">Check to prevent "Nothing Happened This Year" events.</span>
+        <ol start="17">The following major events happened to you at age...
+          {lifeEvents.map((event, i)=>(<li key={i}>{event}</li>))}
+        </ol>
     </div>
   )
 }

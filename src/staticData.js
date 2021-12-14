@@ -1,3 +1,5 @@
+import { IsoTwoTone } from "@material-ui/icons";
+
 // Simulate a d10 roll n times. Returns an array of rolls.
 const diceRoll = (sides, n) => {
   const rolls = new Array;
@@ -438,6 +440,163 @@ const career = {
   }
 }
 
+// Tables for Life Event outcomes:
+
+const youGetLucky = [
+  // 1. Make a Powerful Connection
+  ()=>{
+    const connectionRoll = diceRoll(10,1);
+    let connection;
+    if (connectionRoll < 5) connection = "the Police Department"
+    else if (connectionRoll > 4 && connectionRoll < 8) connection = "the District Attorney's Office"
+    else connection = "the Mayor's Office";
+    return `Made a powerful connection in ${connection}.`;
+  },
+  // 2. Financial Windfall
+  ()=>{
+    const windfall = diceRoll(10,1) * 100;
+    return `Recieved a financial windfall of ${windfall} Eurodollars.`
+  },
+  // 3. Big Score
+  ()=>{
+    const score = diceRoll(10,1) * 100;
+    return `Scored ${score} Eurodollars on a big job or deal.`
+  },
+  // 4. Find a Sensei
+  ()=>{
+    return 'Found a sensei. Begin at +2 or add +1 to a Martial Arts Skill of your choice.'
+  },
+  // 5. Find a Teacher
+  ()=>{
+    return 'Found a teacher. Add +1 to any INT-based skill, or begin a new INT-based skill at +2.'
+  },
+  // 6. Powerful Corp Exec
+  ()=>{
+    return 'A powerful corporate exec owed you a favor.'
+  },
+  // 7. Local Nomads
+  ()=>{
+    return 'Local Nomad pack befriended you. You can call upon them for one favor a month, equivalent to a Family Special Ability of +2.'
+  },
+  // 8. Make a Police Friend
+  ()=>{
+    return 'Made a friend on the police force. You may use them for inside information at a level of +2 Streetwise on any police-related situation.'
+  },
+  // 9. Boostergang likes you
+  ()=>{
+    return "Local Boostergang took a liking to you. (Who knows why? These are Boosters, right?) You can call upon them for one favor a month, equivalent to a Family Special Ability of +2. But don't push it."
+  },
+  // 10. Find a combat teacher
+  ()=>{
+    return 'Found a combat teacher. Add +1 to any weapon skill with the exception of Martial Arts or Brawling, or begin a new combat skill at +2.'
+  }
+]
+
+const disasterStrikes = [
+  ()=>{
+    const debt = diceRoll(10,1) * 100;
+    return `Incurred a debt of ${debt} Eurodollars. If you can't pay this now, you have a debt to pay in cash—or blood.`;
+  },
+  ()=>{
+    const months = diceRoll(10,1);
+    return `Were in prison, or held hostage (your choice) for ${months} months.`;
+  },
+  ()=>{
+    return 'Contracted either an illness or drug habit in this time, and lost 1 pt of REF permanently as a result.'
+  },
+  ()=>{
+    const betrayalRoll = diceRoll(10,1);
+    if (betrayalRoll < 4) {
+      return 'Were blackmailed by someone you trusted.';
+    } else if (betrayalRoll > 3 && betrayalRoll < 8) {
+      return 'Were backstabbed, and a secret exposed.';
+    } else return 'Were betrayed by a close friend in romance or career (you choose).';
+  },
+  ()=>{
+    const accidentRoll = diceRoll(10,1);
+    let accident;
+    if (accidentRoll < 5) {
+       accident = `You were terribly disfigured and must subtract -5 from your ATT`;
+    } else if (accidentRoll > 4 && accidentRoll < 7) {
+       accident = `You were hospitalized for ${diceRoll(10,1)} months that year`
+    } else if (accidentRoll > 6 && accidentRoll < 9) {
+       accident = `You have lost ${diceRoll(10,1)} months of memory of that year`
+    } else {
+       accident = `You constantly relive nightmares (8 in 10 chance each night) of the accident and wake up screaming`
+    }
+    return `Were in an accident. ${accident}.`
+  },
+  ()=>{
+    const relativeRoll = diceRoll(10,1);
+    let relative;
+    if (relativeRoll < 6) {
+       relative = `died accidentally`;
+    } else if (relativeRoll > 5 && relativeRoll < 9) {
+       relative = `were murdered by unknown parties`
+    } else {
+       relative = `were murdered and you know who did it. You just need the proof`
+    }
+    return `Lost someone you really cared about. They ${relative}.`
+  },    
+  ()=>{
+    const accuseRoll = diceRoll(10,1);
+    let accuse;
+    if (accuseRoll < 4) {
+       accuse = 'theft';
+    } else if (accuseRoll > 3 && accuseRoll < 6) {
+       accuse = 'cowardice'
+    } else if (accuseRoll > 5 && accuseRoll < 9) {
+       accuse = 'murder'
+    } else if (accuseRoll === 9) {
+       accuse = 'rape'
+    } else {
+       accuse = 'lying or betrayal'
+    }
+    return `Set up and falsely accused of ${accuse}.`
+  },
+  ()=>{
+    const wantedRoll = diceRoll(10,1);
+    let wanted;
+    if (wantedRoll < 4) {
+       wanted = 'Only a couple local cops want you';
+    } else if (wantedRoll > 3 && wantedRoll < 7) {
+       wanted = 'The entire local police force want you'
+    } else if (wantedRoll > 6 && wantedRoll < 9) {
+       wanted = 'The state police or militia want you'
+    } else {
+       wanted = 'The FBI or equivalent national police force want you'
+    }
+    return `Were hunted by the law. ${wanted}.`
+  },  
+  ()=>{
+    const corpoRoll = diceRoll(10,1);
+    let corpo;
+    if (corpoRoll < 4) {
+       corpo = "It's a small, local firm";
+    } else if (corpoRoll > 3 && corpoRoll < 7) {
+       corpo = "It's a larger corp with offices statewide"
+    } else if (corpoRoll > 6 && corpoRoll < 9) {
+       corpo = "It's a big, national corp with agents in major cities"
+    } else {
+       corpo = "It's a huge multinational with armies, ninjas, and spies everywhere"
+    }
+    return `Angered a corporate honcho. ${corpo}.`
+  },    
+  ()=>{
+    const breakdownRoll = diceRoll(10,1);
+    let breakdown;
+    if (breakdownRoll < 4) {
+       breakdown = "It's a nervous disorder, probably from a bioplague—lose 1 pt REF";
+    } else if (breakdownRoll > 3 && breakdownRoll < 8) {
+       breakdown = "You suffer anxiety attacks and phobias. Lose 1 pt from your CL stat"
+    } else {
+       breakdown = "It's a major psychosis. You hear voices, are violent, irrational, depressive. Lose 1 pt from your CL, 1 from REF"
+    }
+    return `Experienced a mental or physical breakdown. ${breakdown}.`
+  },    
+];
+
 
 export { diceRoll, clothes, hairstyle, affectations, famRank, ethnic, languages, parentStatus, 
-  parentTragedy, childEnv, persTraits, persValued, youValue, howFeel, valuedPos, skills, career, randRollMethodOptions}
+  parentTragedy, childEnv, persTraits, persValued, youValue, howFeel, valuedPos, skills, career, 
+  randRollMethodOptions, youGetLucky, disasterStrikes}

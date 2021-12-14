@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { career } from './staticData';
+import { diceRoll, youGetLucky, disasterStrikes } from './staticData';
 const UserContext = React.createContext();
 
 function UserContextProvider(props) {
@@ -151,6 +151,52 @@ function UserContextProvider(props) {
   const [selectedHowFeel, setHowFeel] = useState('select');
   const [selectedValuedPos, setValuedPos] = useState('select');
 
+  // State for lifeEvents
+  const [age, setAge] = useState(27);
+  const [lifeEvents, setLifeEvents] = useState([]);
+
+  const updateLifeEvents = () => {
+      // Reset lifeEvents whenever function is triggered.    
+    setLifeEvents([]);
+    // Roll 1d10 for each year of the characters' life past 16; for now,
+    // merely add the category of each year's event to the lifeEvents array.
+    let i = 17;
+    let updatedLifeEvents = [];
+    for (let i = 17; i <= age; i++) {
+      // eventRolls evaluates to three simulated, successive 1d10 rolls.
+      const eventRolls = diceRoll(10,3);
+      const eventCategory = eventRolls[0];
+      const eventType = eventRolls[1];
+      // 'event' will in each case evaluate to the output of calling some function
+      // passing in the argument eventrolls[2].
+      let event;
+      if (eventCategory < 4) {
+        // You rolled 'Big Problems, Big Wins'
+        if (eventType % 2 === 0) {
+          event = youGetLucky[eventRolls[2]-1]();
+        } else event = disasterStrikes[eventRolls[2]-1]();
+        updatedLifeEvents = [...updatedLifeEvents, event]
+      } else if (eventCategory > 3 && eventCategory < 7) {
+        // You rolled 'Friends & Enemies':
+        if (eventType < 6) {
+          event = 'You made a friend'
+        } else event = 'You made an enemy';
+        updatedLifeEvents = [...updatedLifeEvents, event]
+      } else if (eventCategory > 6 && eventCategory < 9) {
+        // You rolled 'Romantic Life'
+        if (eventType < 5) {
+          event = 'Happy love affair'
+        } else if (eventType === 5) {
+          event = 'Tragic love affair'
+        } else if (eventType > 5 && eventType < 8) {
+          event = 'Love affair with problems'
+        } else event = 'Fast affairs and hot dates'
+        updatedLifeEvents = [...updatedLifeEvents, event]
+      } else {
+        updatedLifeEvents = [...updatedLifeEvents, 'Nothing Happened That Year']};
+    };
+    setLifeEvents(updatedLifeEvents);
+  }
 
     return (
         <UserContext.Provider value={{
@@ -188,7 +234,9 @@ function UserContextProvider(props) {
           selectedPersValued, setPersValued, 
           selectedYouValue, setYouValue, 
           selectedHowFeel, setHowFeel, 
-          selectedValuedPos, setValuedPos
+          selectedValuedPos, setValuedPos,
+          age, setAge,
+          lifeEvents, updateLifeEvents
 
         }}>
             {props.children}
