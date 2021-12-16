@@ -110,7 +110,7 @@ const CharSheet = () => {
         Age:
 
       <div>
-          <button>Copy Character To Clipboard</button>
+          <button className="button">Copy Character To Clipboard</button>
       </div>
       </div>
     </div>

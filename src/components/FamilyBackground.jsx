@@ -5,7 +5,7 @@ import {
   Radio, RadioGroup 
 } from '@material-ui/core';
 import { UserContext } from '../UserContext';
-import { famRank, parentStatus, parentTragedy,
+import { diceRoll, famRank, parentStatus, parentTragedy,
   childEnv } from '../staticData';
 
 
@@ -20,7 +20,13 @@ const FamilyBackground = () => {
 
   return (
       <div className="widget">
-        <h3>2. Family Background</h3>
+        <h3>2. Family Background&nbsp;
+          <button className="randomize" onClick={()=>{
+          setFamRank(famRank[diceRoll(10,1)-1]);
+          setParentStatus(parentStatus[diceRoll(2,1)-1]);
+          setParentTragedy(parentTragedy[diceRoll(10,1)-1]);
+          setChildEnv(childEnv[diceRoll(10,1)-1]);
+          }}>Randomize</button></h3>
         <p>Who are you, and where did you come from? Everybody on the Street has a story
           and a past they're trying to live with. What's yours?</p>
 
@@ -58,7 +64,7 @@ const FamilyBackground = () => {
 
         {(selectedParentStatus==='Something happened to one or both parents') ? 
           <div className="selection-dropdown">
-            <span>What Happened To Your Parents:&nbsp;</span>
+            <span>What Happened:&nbsp;</span>
             <Select
               labelId="parent-tragedy-select-label"
               id="parent-tragedy-select"

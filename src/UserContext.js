@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { diceRoll, youGetLucky, disasterStrikes } from './staticData';
+import { diceRoll, youGetLucky, disasterStrikes, youMadeAFriend, youMadeAnEnemy, romanticLife } from './staticData';
 const UserContext = React.createContext();
 
 function UserContextProvider(props) {
@@ -179,18 +179,16 @@ function UserContextProvider(props) {
       } else if (eventCategory > 3 && eventCategory < 7) {
         // You rolled 'Friends & Enemies':
         if (eventType < 6) {
-          event = 'You made a friend'
-        } else event = 'You made an enemy';
+          event = youMadeAFriend[eventRolls[2]-1];
+        } else event = youMadeAnEnemy();
         updatedLifeEvents = [...updatedLifeEvents, event]
       } else if (eventCategory > 6 && eventCategory < 9) {
         // You rolled 'Romantic Life'
         if (eventType < 5) {
-          event = 'Happy love affair'
-        } else if (eventType === 5) {
-          event = 'Tragic love affair'
-        } else if (eventType > 5 && eventType < 8) {
-          event = 'Love affair with problems'
-        } else event = 'Fast affairs and hot dates'
+          event = 'Had a happy love affair.'
+        } else if (eventType > 4 && eventType < 8) {
+          event = romanticLife(eventType)
+        } else event = 'Had fast affairs and hot dates.'
         updatedLifeEvents = [...updatedLifeEvents, event]
       } else {
         updatedLifeEvents = [...updatedLifeEvents, 'Nothing Happened That Year']};

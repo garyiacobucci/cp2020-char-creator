@@ -552,7 +552,7 @@ const disasterStrikes = [
     } else {
        accuse = 'lying or betrayal'
     }
-    return `Set up and falsely accused of ${accuse}.`
+    return `Were set up and falsely accused of ${accuse}.`
   },
   ()=>{
     const wantedRoll = diceRoll(10,1);
@@ -596,7 +596,145 @@ const disasterStrikes = [
   },    
 ];
 
+const youMadeAFriend = [
+  "Made a new friend who's like a big brother/sister to you.",
+  "Made a new friend who's like a kid sister/brother to you.",
+  "Found a friend in a teacher or mentor.",
+  "Found a friend in a partner or co-worker.",
+  "Reconnected with an old lover (choose which one) as a friend.",
+  "Turned an old enemy (choose which one) into a friend.",
+  "Formed a connection with someone who's like a foster parent to you.",
+  "Made a friend out of a relative.",
+  "Reconnected with an old childhood friend",
+  "Met a new friend through a common interest."
+]
+
+const youMadeAnEnemy = () => {
+  // 1. Roll enemy's gender -- Even: male, odd: female
+  const genderRoll = diceRoll(2, 1);
+  let gender;
+  if (genderRoll[0] === 1) gender = 'male';
+  else gender = 'female';
+  // 2. Roll enemy's relationship to player
+  const relationshipRoll = diceRoll(10,1)[0];
+  let relationship;
+  const relationshipOptions = [
+    'ex-friend',
+    'ex-lover',
+    'relative',
+    'childhood enemy',
+    'employee',
+    'employer',
+    'partner or co-worker',
+    'booster gang member',
+    'corporate exec',
+    'government official'
+  ]
+  relationship = relationshipOptions[relationshipRoll-1];
+  // 3. Roll cause of emnity
+  const originRoll = diceRoll(10,1)[0];
+  let origin;
+  // Secondary roll for option #5 (caused a disability)
+  const injuryRoll = diceRoll(6,1)[0];
+  let injury;
+  if (injuryRoll < 3) {
+    injury = 'cost the other an eye';
+  } else if (injuryRoll > 2 && injuryRoll < 5) {
+    injury = 'cost the other an arm';
+  } else injury = 'badly scarred the other';
+  const origins = [
+    'caused the other to lose face or status',
+    'caused the loss of a lover, friend, or relative',
+    'caused a major humiliation',
+    'accused the other of cowardice or some other personal flaw',
+    injury,
+    'deserted or betrayed the other',
+    "turned down the other's offer of job or romantic involvement",
+    "just didn't like the other, and the feeling turned out to be mutual",
+    'was a romantic rival to the other',
+    "foiled a plan of the other"
+  ]
+  origin = origins[originRoll-1];
+  // 4. Roll who's fracked off
+  const frackRoll = diceRoll(10,1)[0];
+  let fracked;
+  if (frackRoll < 5) fracked = 'They hate you'
+  else if (frackRoll > 4 && frackRoll < 8) fracked = 'You hate them'
+  else fracked = "The feeling's mutual";
+  // 5. Roll whatcha gonna do about it
+  const responseRoll = diceRoll(10,1)[0];
+  let response;
+  if (responseRoll < 3) response = 'go into a murderous killing rage'
+  else if (responseRoll > 2 && responseRoll < 5) response = 'avoid the scum'
+  else if (responseRoll > 4 && responseRoll < 7) response = 'backstab the other'
+  else if (responseRoll > 6 && responseRoll < 9) response = 'ignore the scum'
+  else response = 'verbally rip into the other';
+  // 6. Roll what they can throw against you
+  const forcesRoll = diceRoll(10,1)[0];
+  let forces;
+  if (forcesRoll < 4) forces = 'only themselves'
+  else if (forcesRoll > 3 && forcesRoll < 6) forces = 'themselves and a few others'
+  else if (forcesRoll > 5 && forcesRoll < 8) forces = 'an entire gang'
+  else if (forcesRoll === 8) forces = 'a small corporation'
+  else if (forcesRoll === 9) forces = 'a large corporation'
+  else forces = 'an entire government agency';
+  return `Made an enemy. They're a ${gender} ${relationship}. 
+    One of you ${origin}. ${fracked}. If you ever
+    meet, the injured party would probably ${response}. 
+    They can throw ${forces} against you.`;
+}
+
+const romanticLife = (roll) => {
+  let loveAffair;
+  // Handle 'Tragic Love Affair'
+  if (roll === 5 ) {
+    const tragicOptions = [
+      'Lover died in an accident.',
+      'Lover mysteriously vanished.',
+      "Had a tragic love affair that didn't work out.",
+      'A personal goal or vendetta came between you and a lover.',
+      'Lover was kidnapped.',
+      'Lover went insane.',
+      'Lover comitted suicide.',
+      'Lover was killed in a fight.',
+      'A romantic rival cut you out of the action.',
+      'Lover was imprisoned or exiled.'
+    ]
+    loveAffair = tragicOptions[diceRoll(10,1)-1];
+  }
+  else {
+    const problemsOptions = [
+      // Handle 'Love Affair With Problems'
+      "Their friends/family hated you",
+      "Their friends/family were willing to use any means to get rid of you",
+      "Your friends/family hated your lover",
+      'A romantic rival come between you and your lover',
+      'You were separated from your lover',
+      'You fought constantly with your lover',
+      'They were your professional rival',
+      'One of you was insanely jealous',
+      "One of you were 'messing around'",
+      'You each had conflicting backgrounds and families'
+    ];
+    const mutualOptions = [
+      'They still love you',
+      'You still love them',
+      'You still love each other',
+      'You hate them',
+      'They hate you',
+      'You hate each other',
+      "You're friends",
+      "There are no feelings either way; it's over",
+      'You like them, but they hate you',
+      'They like you, but you hate them'
+    ]
+    // Concatenate 'Mutual Feelings'
+    loveAffair = `Had a love affair with problems. ${problemsOptions[diceRoll(10,1)-1]}. ${mutualOptions[diceRoll(10,1)-1]}.`
+  }
+  return loveAffair;
+}
+
 
 export { diceRoll, clothes, hairstyle, affectations, famRank, ethnic, languages, parentStatus, 
   parentTragedy, childEnv, persTraits, persValued, youValue, howFeel, valuedPos, skills, career, 
-  randRollMethodOptions, youGetLucky, disasterStrikes}
+  randRollMethodOptions, youGetLucky, disasterStrikes, youMadeAFriend, youMadeAnEnemy, romanticLife}

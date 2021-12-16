@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { 
   button, MenuItem, InputLabel, Select,
   FormControlLabel, FormControl,
@@ -17,10 +17,26 @@ const Origins = () => {
     selectedEthnicity, selectedLanguage, setLanguage
   } = useContext(UserContext);
 
+  // Use useEffect to simulate async/await behavior, due to the asynchronous nature of Hooks.
+  // Necessary so that when randomizing, language is updated only once ethnicity has been updated.
+  useEffect(()=>{
+    const languageOptions = languages[selectedEthnicity];
+    if (languageOptions !== undefined) {
+      setLanguage(languages[selectedEthnicity][diceRoll(languageOptions.length,1)-1])      
+    }
+  }, [selectedEthnicity])
+
   return (
     <div className="component-wrapper">
       <div className="widget">
-        <h3>1. Origins and Personal Style</h3>
+        <h3>1. Origins and Personal Style&nbsp;
+          <button className="randomize" onClick={()=>{
+          setSelectedClothes(clothes[diceRoll(10,1)-1]);
+          setSelectedHairstyle(hairstyle[diceRoll(10,1)-1]);
+          setSelectedAffectations(affectations[diceRoll(10,1)-1]);
+          setEthnicity(ethnic[diceRoll(10,1)-1]);
+          }}>Randomize</button>
+        </h3>
         <h4>Dress & Personal Style</h4>
         <p>In <i>Cyberpunk</i>, what you look like is what you are. Fashion is action, and style is everything.</p>
         <div className="selection-dropdown">
@@ -70,11 +86,6 @@ const Origins = () => {
             )}
           </Select>
         </div>
-        <div><button className="button" onClick={()=>{
-          setSelectedClothes(clothes[diceRoll(10,1)-1]);
-          setSelectedHairstyle(hairstyle[diceRoll(10,1)-1]);
-          setSelectedAffectations(affectations[diceRoll(10,1)-1]);
-          }}>Randomize</button></div>
 
         <h4>Ethnic Origins</h4>
         <p>

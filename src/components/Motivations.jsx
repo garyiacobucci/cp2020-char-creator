@@ -5,7 +5,7 @@ import {
   Radio, RadioGroup 
 } from '@material-ui/core';
 import { UserContext } from '../UserContext';
-import { persTraits, persValued, youValue, howFeel, valuedPos } from '../staticData';
+import { persTraits, persValued, youValue, howFeel, valuedPos, diceRoll } from '../staticData';
 
 
 const Motivations = () => {
@@ -21,7 +21,14 @@ const Motivations = () => {
 
   return (
       <div className="widget">
-        <h3>3. Motivations</h3>
+        <h3>3. Motivations&nbsp;
+          <button className="randomize" onClick={()=>{
+          setPersTraits(persTraits[diceRoll(10,1)-1]);
+          setPersValued(persValued[diceRoll(10,1)-1]);
+          setYouValue(youValue[diceRoll(10,1)-1]);
+          setHowFeel(howFeel[diceRoll(10,1)-1]);
+          setValuedPos(valuedPos[diceRoll(10,1)-1])
+          }}>Randomize</button></h3>
         <p>What makes you tick? Will you back up your friends or go for the
           main chance? What's important to you?
         </p>

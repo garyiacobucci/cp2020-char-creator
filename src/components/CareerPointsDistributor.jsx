@@ -20,8 +20,8 @@ const CareerPointsDistributor = (props) => {
             <div className="category-name">{value}</div>
           </div>
           <div className="points-distributor-control-panel">
-            <button onClick={(e) => setCareerSkillPoints({...careerSkillPoints, [i+1]:careerSkillPoints[i+1]+1})} disabled={(40-accSkillPoints<1)} >+</button>
-            <button onClick={(e) => setCareerSkillPoints({...careerSkillPoints, [i+1]:careerSkillPoints[i+1]-1})} disabled={careerSkillPoints[i+1]<1}>-</button>
+            <button className="button"  onClick={(e) => setCareerSkillPoints({...careerSkillPoints, [i+1]:careerSkillPoints[i+1]+1})} disabled={(40-accSkillPoints<1)} >+</button>
+            <button className="button" onClick={(e) => setCareerSkillPoints({...careerSkillPoints, [i+1]:careerSkillPoints[i+1]-1})} disabled={careerSkillPoints[i+1]<1}>-</button>
           </div>
           <div className="points-distributor-value">
             Skill description

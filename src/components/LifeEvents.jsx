@@ -24,7 +24,7 @@ const LifeEvents = () => {
       <span className="callout">Age</span>
       <span className="fine-print">&nbsp;(Must be a value between 17 and 99):</span>
       <div className="callout">{age}</div>
-      <button onClick={updateLifeEvents}>Generate Lifepath</button><br />
+      <button className="button" onClick={updateLifeEvents}>Generate Lifepath</button><br />
       <input type="checkbox" id="preventNothing" />
         <span className="fine-print">Check to prevent "Nothing Happened This Year" events.</span>
         <ol start="17">The following major events happened to you at age...

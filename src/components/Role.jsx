@@ -27,7 +27,7 @@ const Role = () => {
       <div className="widget">
 
         <h2>Role and Skills</h2>
-        <h3>Role</h3>
+        <h3>Role&nbsp;<button className="randomize" onClick={()=>{setRole(Object.keys(career)[diceRoll(10,1)-1])}}>Randomize</button></h3>
         <p>The world of Cyberpunk is a combination of savage, sophisticated, modern and retrograde. 
           Fashion model-beautiful Techies rub shoulders with battle-armored road warriors, 
           all of them making the scene in the hottest dance clubs, sleaziest bars and meanest streets 
@@ -64,8 +64,6 @@ const Role = () => {
             </Select>
           </FormControl>
 
-          <div><button onClick={()=>{setRole(Object.keys(career)[diceRoll(10,1)-1])}}>Randomize</button></div>
-
           <span className="callout">Career Skill Points Remaining: {40-accSkillPoints}<br/></span>
 
             {
@@ -78,7 +76,7 @@ const Role = () => {
             <div id="pickup-skills-panel">
               <p><b>Pickup Skills</b> are skills the character has learned in the course of knocking around, living his or her life.</p>
               <h3>Pickup Skill Points (REF + INT) : {refPoints+intPoints} | Remaining: {(refPoints+intPoints)-accPickupSkills}</h3>
-              <div><button onClick={()=>{addNewPickupSkillRow()}}>Add a Pickup Skill</button></div>
+              <div><button className="button" onClick={()=>{addNewPickupSkillRow()}}>Add a Pickup Skill</button></div>
             </div>
 
             {pickupSkillCategories.map((category, i) => (

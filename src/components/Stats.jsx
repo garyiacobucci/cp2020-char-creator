@@ -43,7 +43,7 @@ const Stats = () => {
       <div className="widget">
         <h2>Randomize Everything?</h2>
         <p>Clicking "Randomize Everything" button below will randomly select everything: Roll Method, Stats, Role, Skills, Style, Background, etc.</p>
-        <div><button onClick={toggleTheme}>Randomize Everything</button></div>
+        <div><button type="button" className="button" onClick={toggleTheme}>Randomize Everything</button></div>
       </div>
 
       <div className="widget">
@@ -64,7 +64,7 @@ const Stats = () => {
 
       <div className="widget">
         <h2>Statistics</h2>
-        <h3>Character Points</h3>
+        <h3>Character Points&nbsp;<button className="randomize" onClick={()=>{setRollMethod(randRollMethodOptions[diceRoll(6,1)-1][0]);assignCharPointsRoll(randRollMethodOptions[diceRoll(6,1)-1][1])}}>Randomize</button></h3>
         <p>Character Points are the cash of character creation—you can use them to "buy" the various "mechanics"
           aspects of the character, like good looks, a strong, hard body, unshakable cool and street smarts (but not 
           Skills). To continue, select a method of determining your points count: 
@@ -83,8 +83,7 @@ const Stats = () => {
               <FormControlLabel value="average" control={<Radio />} label="Average" onClick={() => {setRollMethod('Average');assignCharPointsRoll([50])}} />
               <FormControlLabel value="manual" control={<Radio />} label="Manually Enter Value" onClick={() => {setRollMethod('Manually Enter')}} />
             </RadioGroup>
-          </FormControl>
-          <div><button onClick={()=>{setRollMethod(randRollMethodOptions[diceRoll(6,1)-1][0]);assignCharPointsRoll(randRollMethodOptions[diceRoll(6,1)-1][1])}}>Randomize</button></div>         
+          </FormControl>     
         </div>
         <div>
           <p>Roll method: {rollMethod}</p>

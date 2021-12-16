@@ -15,8 +15,8 @@ const PointsDistributor = (props) => {
         <div className="category-name">{props.categoryName}<br />&#40;{props.categoryShorthand}&#41;</div>
     </div>
     <div className="points-distributor-control-panel">
-      <button onClick={props.addCallback} disabled={((charPointsRoll.reduce((a,b)=>a+b,0))-accAssignedPoints<1 || props.pointValue>9)}>+</button>
-      <button onClick={props.subCallback} disabled={(props.pointValue<3)}>-</button>
+      <button className="button" onClick={props.addCallback} disabled={((charPointsRoll.reduce((a,b)=>a+b,0))-accAssignedPoints<1 || props.pointValue>9)}>+</button>
+      <button className="button" onClick={props.subCallback} disabled={(props.pointValue<3)}>-</button>
     </div>
     <div key='1' className="points-distributor-value">
       {props.description}

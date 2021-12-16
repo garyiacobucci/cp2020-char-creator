@@ -7,18 +7,39 @@ body {
   text-justify: inter-word;
 }
 
-button {
+@mixin button-reset {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+%button-shared {
+  @include button-reset;
   background-color: #3498DB;
   margin-top: 2px;
   margin-right: 2px;
   color: white;
-  padding: 16px;
-  font-size: 16px;
   border: none;
-  cursor: pointer;  
+  cursor: pointer;
 }
 
-button:disabled {
+.button {
+  @extend %button-shared;
+  padding: 16px;
+  font-size: 16px;
+}
+
+.randomize {
+  @extend %button-shared;
+  font-size: small;
+  font-weight: 300;
+  padding: 4px;
+}
+
+.button:disabled {
   background-color: gray;
 }
 
@@ -144,6 +165,7 @@ ul {
   font-size: small;
   font-weight: 700;
 }
+
 
 .warning {
   color: hotpink;
