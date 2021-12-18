@@ -169,6 +169,7 @@ const youValue = [
 
 const howFeel = [
   "Neutral",
+  "I like almost everyone",
   "I hate almost everyone",
   "People are tools. Use them for your own goals and discard them",
   "Every person is a valuable individual",

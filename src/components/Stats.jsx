@@ -40,11 +40,11 @@ const Stats = () => {
 
   return (
     <div className="component-wrapper">
-      <div className="widget">
+      {/*<div className="widget">
         <h2>Randomize Everything?</h2>
         <p>Clicking "Randomize Everything" button below will randomly select everything: Roll Method, Stats, Role, Skills, Style, Background, etc.</p>
         <div><button type="button" className="button" onClick={toggleTheme}>Randomize Everything</button></div>
-      </div>
+      </div>*/}
 
       <div className="widget">
         <h2>Handle</h2>
@@ -90,7 +90,7 @@ const Stats = () => {
           {rollMethod==='Manually Enter' && 
           <form>
             <input
-              type="text"
+              type="number"
               onChange={(e) => handleChange(e, assignCharPointsRoll)}
               name="manual-points-amount"
               value={[charPointsRoll]}
@@ -231,7 +231,7 @@ const Stats = () => {
             and <a href="https://cyberpunk.fandom.com/wiki/Cyberpsychosis" target="_blank">cold-blooded cyber-monster</a>.</>}
           />
         </div>
-        : <div className="warning">You must determine your Character Points before you can assign them (See above)!</div> }
+        : <div className="warning">// Determine your Character Points to assign them (See above) //</div> }
 
   
 

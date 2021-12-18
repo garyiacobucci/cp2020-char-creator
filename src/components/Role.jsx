@@ -17,6 +17,7 @@ const Role = () => {
     refPoints, intPoints,
     role, setRole, accSkillPoints,
     addNewPickupSkillRow, removePickupSkillRow, 
+    setCareerSkillPoints,
     pickupSkillCategories, updatePickupSkillCategories, 
     pickupSkillValues, updatePickupSkillValues, accPickupSkills
   } = useContext(UserContext);
@@ -27,7 +28,10 @@ const Role = () => {
       <div className="widget">
 
         <h2>Role and Skills</h2>
-        <h3>Role&nbsp;<button className="randomize" onClick={()=>{setRole(Object.keys(career)[diceRoll(10,1)-1])}}>Randomize</button></h3>
+        <h3>Role&nbsp;<button className="randomize" onClick={()=>{
+          setRole(Object.keys(career)[diceRoll(10,1)-1]);
+          setCareerSkillPoints({1:4,2:4,3:4,4:4,5:4,6:4,7:4,8:4,9:4,10:4,11:0,12:0})
+        }}>Randomize</button></h3>
         <p>The world of Cyberpunk is a combination of savage, sophisticated, modern and retrograde. 
           Fashion model-beautiful Techies rub shoulders with battle-armored road warriors, 
           all of them making the scene in the hottest dance clubs, sleaziest bars and meanest streets 
@@ -56,7 +60,7 @@ const Role = () => {
               id="role-select"
               value={role}
               label="Role"
-              onChange={(e)=>setRole(e.target.value)}
+              onChange={(e)=>{setRole(e.target.value);setCareerSkillPoints({1:4,2:4,3:4,4:4,5:4,6:4,7:4,8:4,9:4,10:4,11:0,12:0})}}
             >
               {Object.keys(career).map((role, i) => (
                 <MenuItem key={i} value={role}>{role}</MenuItem>
@@ -64,11 +68,11 @@ const Role = () => {
             </Select>
           </FormControl>
 
-          <span className="callout">Career Skill Points Remaining: {40-accSkillPoints}<br/></span>
+          <p className="callout">Career Skill Points to Distribute: {40-accSkillPoints}<br/></p>
 
             {
               // Render the Career Skills panel interface once a role has been selected:
-            (role !== '') ? <CareerPointsDistributor /> : <div className="warning">Please select a role in order to assign Career Skill points!</div>
+            (role !== '') ? <CareerPointsDistributor /> : <div className="warning">// Please select a role in order to assign Career Skill points //</div>
             }
           </div>
 
@@ -106,11 +110,13 @@ const Role = () => {
 
 
                 <div className="points-distributor-control-panel" id="pickup-control-panel">
-                  <button 
+                  <button
+                    className="button"
                     onClick={()=>updatePickupSkillValues(i, 1)}
                     disabled={category==='select'||(refPoints+intPoints)-accPickupSkills<1} >+
                   </button>
-                  <button 
+                  <button
+                    className="button"
                     onClick={()=>updatePickupSkillValues(i, -1)}
                     disabled={category==='select'||pickupSkillValues[i]<1} >-
                   </button>

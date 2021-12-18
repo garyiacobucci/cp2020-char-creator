@@ -12,19 +12,16 @@ const CareerPointsDistributor = (props) => {
 
 
   return(
-    <div>
+    <div className="career-points-container">
       {Object.values(career[role]).map((value, i) => (
-        <div className="points-distributor-wrapper" key={i}>
-          <div className="points-distributor-category">
+        <div className="career-points-distributor-wrapper" key={i}>
+          <div className="career-points-distributor-category">
             <div className="point-value">{careerSkillPoints[i+1]}</div>
             <div className="category-name">{value}</div>
           </div>
           <div className="points-distributor-control-panel">
             <button className="button"  onClick={(e) => setCareerSkillPoints({...careerSkillPoints, [i+1]:careerSkillPoints[i+1]+1})} disabled={(40-accSkillPoints<1)} >+</button>
             <button className="button" onClick={(e) => setCareerSkillPoints({...careerSkillPoints, [i+1]:careerSkillPoints[i+1]-1})} disabled={careerSkillPoints[i+1]<1}>-</button>
-          </div>
-          <div className="points-distributor-value">
-            Skill description
           </div>
         </div>
       ))}

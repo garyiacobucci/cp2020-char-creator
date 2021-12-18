@@ -115,9 +115,9 @@ const FamilyBackground = () => {
                   onChange={(e)=>updateSibling(i, 'gender', e.target.value)}
                 >
                   <MenuItem value={'select'}>SELECT</MenuItem>
-                  <MenuItem value={'male'}>Male</MenuItem>
-                  <MenuItem value={'female'}>Female</MenuItem>
-                  <MenuItem value={'other'}>Other/NB</MenuItem>                    
+                  <MenuItem value={'Male'}>Male</MenuItem>
+                  <MenuItem value={'Female'}>Female</MenuItem>
+                  <MenuItem value={'Other/NB'}>Other/NB</MenuItem>                    
                 </Select>
               </div>
 
@@ -131,9 +131,9 @@ const FamilyBackground = () => {
                   onChange={(e)=>updateSibling(i, 'age', e.target.value)}
                 >
                   <MenuItem value={'select'}>SELECT</MenuItem>
-                  <MenuItem value={'older than you'}>Older than you</MenuItem>
-                  <MenuItem value={'younger than you'}>Younger than you</MenuItem>
-                  <MenuItem value={'twin'}>Twin</MenuItem>
+                  <MenuItem value={'Older than you'}>Older than you</MenuItem>
+                  <MenuItem value={'Younger than you'}>Younger than you</MenuItem>
+                  <MenuItem value={'Your twin'}>Your twin</MenuItem>
                 </Select>
               </div>
 
@@ -147,11 +147,11 @@ const FamilyBackground = () => {
                   onChange={(e)=>updateSibling(i, 'feeling', e.target.value)}
                 >
                   <MenuItem value={'select'}>SELECT</MenuItem>
-                  <MenuItem value={'neutral towards you'}>Is neutral towards you</MenuItem>                    
-                  <MenuItem value={'likes you'}>Likes you</MenuItem>
-                  <MenuItem value={'dislikes you'}>Dislikes you</MenuItem>
-                  <MenuItem value={'hero worships you'}>Hero worships you</MenuItem>
-                  <MenuItem value={'hates you'}>Hates you</MenuItem>
+                  <MenuItem value={'Neutral towards you'}>Is neutral towards you</MenuItem>                    
+                  <MenuItem value={'Likes you'}>Likes you</MenuItem>
+                  <MenuItem value={'Dislikes you'}>Dislikes you</MenuItem>
+                  <MenuItem value={'Hero worships you'}>Hero worships you</MenuItem>
+                  <MenuItem value={'Hates you'}>Hates you</MenuItem>
                 </Select>
               </div>
 

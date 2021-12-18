@@ -155,7 +155,7 @@ function UserContextProvider(props) {
   const [age, setAge] = useState(27);
   const [lifeEvents, setLifeEvents] = useState([]);
 
-  const updateLifeEvents = () => {
+  const updateLifeEvents = (preventNothingHappened) => {
       // Reset lifeEvents whenever function is triggered.    
     setLifeEvents([]);
     // Roll 1d10 for each year of the characters' life past 16; for now,
@@ -163,23 +163,26 @@ function UserContextProvider(props) {
     let i = 17;
     let updatedLifeEvents = [];
     for (let i = 17; i <= age; i++) {
-      // eventRolls evaluates to three simulated, successive 1d10 rolls.
-      const eventRolls = diceRoll(10,3);
-      const eventCategory = eventRolls[0];
-      const eventType = eventRolls[1];
-      // 'event' will in each case evaluate to the output of calling some function
-      // passing in the argument eventrolls[2].
+      // First, roll 'eventCategory' based on whether we're allowing 'nothing happened' as an outcome:
+      let eventCategory;
+      if (!preventNothingHappened) eventCategory = diceRoll(10,1)[0]
+      else eventCategory = diceRoll(8,1)[0];
+      // Next, roll for 1d10 for the 'eventType' of event within the chosen category:
+      const eventType = diceRoll(10,1)[0];
+      // Finally, roll 'eventRoll' to determine the specific event from its given table.
+      let eventRoll = diceRoll(10,1)[0];
+      // 'event' will be assigned to this eventuality.
       let event;
       if (eventCategory < 4) {
         // You rolled 'Big Problems, Big Wins'
         if (eventType % 2 === 0) {
-          event = youGetLucky[eventRolls[2]-1]();
-        } else event = disasterStrikes[eventRolls[2]-1]();
+          event = youGetLucky[eventRoll-1]();
+        } else event = disasterStrikes[eventRoll-1]();
         updatedLifeEvents = [...updatedLifeEvents, event]
       } else if (eventCategory > 3 && eventCategory < 7) {
         // You rolled 'Friends & Enemies':
         if (eventType < 6) {
-          event = youMadeAFriend[eventRolls[2]-1];
+          event = youMadeAFriend[eventRoll-1];
         } else event = youMadeAnEnemy();
         updatedLifeEvents = [...updatedLifeEvents, event]
       } else if (eventCategory > 6 && eventCategory < 9) {
@@ -234,8 +237,7 @@ function UserContextProvider(props) {
           selectedHowFeel, setHowFeel, 
           selectedValuedPos, setValuedPos,
           age, setAge,
-          lifeEvents, updateLifeEvents
-
+          lifeEvents, updateLifeEvents,
         }}>
             {props.children}
         </UserContext.Provider>

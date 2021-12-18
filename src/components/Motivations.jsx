@@ -26,7 +26,7 @@ const Motivations = () => {
           setPersTraits(persTraits[diceRoll(10,1)-1]);
           setPersValued(persValued[diceRoll(10,1)-1]);
           setYouValue(youValue[diceRoll(10,1)-1]);
-          setHowFeel(howFeel[diceRoll(10,1)-1]);
+          setHowFeel(howFeel[diceRoll(9,1)-1]);
           setValuedPos(valuedPos[diceRoll(10,1)-1])
           }}>Randomize</button></h3>
         <p>What makes you tick? Will you back up your friends or go for the
@@ -80,7 +80,7 @@ const Motivations = () => {
         </div>
 
         <div className="selection-dropdown">
-          <span>Your Most Valued Posession:&nbsp;</span>
+          <span>Your Most Valued Possession:&nbsp;</span>
           <Select
             labelId="valued-pos-select-label"
             id="valued-pos-select"
