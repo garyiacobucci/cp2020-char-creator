@@ -79,7 +79,7 @@ const Role = () => {
           <div>
             <div id="pickup-skills-panel">
               <p><b>Pickup Skills</b> are skills the character has learned in the course of knocking around, living his or her life.</p>
-              <h3>Pickup Skill Points (REF + INT) : {refPoints+intPoints} | Remaining: {(refPoints+intPoints)-accPickupSkills}</h3>
+              <h3>Pickup Skill Points (REF + INT) : <span className="callout highlight">{refPoints+intPoints}</span> | Remaining: <span className="callout highlight">{(refPoints+intPoints)-accPickupSkills}</span></h3>
               <div><button className="button" onClick={()=>{addNewPickupSkillRow()}}>Add a Pickup Skill</button></div>
             </div>
 

@@ -39,7 +39,8 @@ const CopyToClipboard = () => {
     selectedHowFeel, 
     selectedValuedPos,
     siblings,
-    age, lifeEvents
+    age, lifeEvents,
+    copySuccessMessage, setCopySuccessMessage
   } = useContext(UserContext);
 
 
@@ -67,7 +68,7 @@ ROLE: ${(role)!==''?role:'Must select a role!'}
 
 -STATS -
 
-CHARACTER POINTS: ${charPointsRoll}
+CHARACTER POINTS: ${charPointsHaveBeenRolled?(charPointsRoll.reduce((a,b)=>a+b,0)):'Must determine character points!'}
 
 INT [${intPoints}]
 REF [${refPoints}]
@@ -136,15 +137,32 @@ MOTIVATIONS:
 
 LIFE EVENTS:
 Age: ${age}
-${(lifeEvents.length>0)? 
-  lifeEvents.map((lifeEvent, i)=>(`${i}. ${lifeEvent}`)).join("\r\n")
+${(lifeEvents.length>0)?
+  lifeEvents.map((lifeEvent, i = 17)=>(`${i}. ${lifeEvent}`)).join("\r\n")
   : 'Must generate life events!'}`
+
+  const handleTooltip = () => {
+    // Set the value of the tooltip text to a success message.
+    setCopySuccessMessage('Copied Successfully!')
+    // After three seconds, reset the value back to an empty string.
+    setTimeout( function() {
+      setCopySuccessMessage('');
+  }, 3000);
+  }
 
   return (
     <div>
-        <button className="button" onClick={()=>navigator.clipboard.writeText(plainTextCharacterSheet)}>Copy Character To Clipboard</button>
+        <button className="button" onClick={()=>{
+          navigator.clipboard.writeText(plainTextCharacterSheet);
+          handleTooltip();
+          }}>Copy Character To Clipboard
+        </button>
+        <span className="warning fade-in">&nbsp;{copySuccessMessage}</span>
     </div>
   )
 }
+
+// Consider adding fade-in and fade-out on the copy success message per this link: 
+// https://levelup.gitconnected.com/fade-in-out-text-in-react-fa8fc7a2a0b1
 
 export default CopyToClipboard

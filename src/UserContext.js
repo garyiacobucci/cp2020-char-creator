@@ -199,6 +199,8 @@ function UserContextProvider(props) {
     setLifeEvents(updatedLifeEvents);
   }
 
+  const [copySuccessMessage, setCopySuccessMessage] = useState('');
+
     return (
         <UserContext.Provider value={{
           theme, toggleTheme,
@@ -238,6 +240,7 @@ function UserContextProvider(props) {
           selectedValuedPos, setValuedPos,
           age, setAge,
           lifeEvents, updateLifeEvents,
+          copySuccessMessage, setCopySuccessMessage
         }}>
             {props.children}
         </UserContext.Provider>

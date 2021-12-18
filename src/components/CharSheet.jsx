@@ -46,30 +46,30 @@ const CharSheet = () => {
     <div className="component-wrapper">
       <div className="widget">
       <h2>Character Sheet</h2>
-      <p className="callout">HANDLE: {(userHandle!=='')?userHandle:'Must select a handle!'}</p>
-      <p className="callout">ROLE: {(role)!==''?role:'Must select a role!'}</p>  
+      <p className="">HANDLE: {(userHandle!=='')?<span className="highlight">{userHandle}</span>:<span className="warning">Must select a handle!</span>}</p>
+      <p className="">ROLE: {(role)!==''?<span className="highlight">{role}</span>:<span className="warning">Must select a role!</span>}</p>  
       <h3>STATS</h3>
-      <h4>CHARACTER POINTS: {charPointsRoll}</h4>
+      <p>CHARACTER POINTS: {charPointsHaveBeenRolled?<span className="highlight">{charPointsRoll.reduce((a,b)=>a+b,0)}</span>:<span className="warning">Must determine character points!</span>}</p>
       <div>
-        INT [{intPoints}] // 
-        REF [{refPoints}] //
-        TECH [{techPoints}] //
-        COOL [{coolPoints}] //
-        ATTR [{attPoints}] //
-        LUCK [{luckPoints}] //
-        MA [{maPoints}] //
-        BODY [{bodyPoints}] //
-        EMP [{empPoints}]
+        INT <span className="highlight">[{intPoints}]</span> // 
+        REF <span className="highlight">[{refPoints}]</span> //
+        TECH <span className="highlight">[{techPoints}]</span> //
+        COOL <span className="highlight">[{coolPoints}]</span> //
+        ATTR <span className="highlight">[{attPoints}]</span> //
+        LUCK <span className="highlight">[{luckPoints}]</span> //
+        MA <span className="highlight">[{maPoints}]</span> //
+        BODY <span className="highlight">[{bodyPoints}]</span> //
+        EMP <span className="highlight">[{empPoints}]</span>
       </div>
       <h4>DERIVED STATS</h4>
       <div>
-        Humanity [{empPoints*10}] //
-        Run [{maPoints * 3}] m //
-        Leap [{(maPoints * 3)/4}] m //
-        Lift (kgs) [{bodyPoints*40}] Lift (lbs) [{Math.floor(bodyPoints*40*2.2046)}] //
-        Carry (kgs) [{bodyPoints*10}] Carry (lbs) [{Math.floor(bodyPoints*10*2.2046)}] //
-        Save [{bodyPoints}] //
-        Body Type Modifier {(() => {
+        Humanity <span className="highlight">[{empPoints*10}]</span> //
+        Run <span className="highlight">[{maPoints * 3}]</span> m //
+        Leap <span className="highlight">[{(maPoints * 3)/4}]</span> m //
+        Lift (kgs) <span className="highlight">[{bodyPoints*40}]</span> Lift (lbs) <span className="highlight">[{Math.floor(bodyPoints*40*2.2046)}]</span> //
+        Carry (kgs) <span className="highlight">[{bodyPoints*10}]</span> Carry (lbs) <span className="highlight">[{Math.floor(bodyPoints*10*2.2046)}]</span> //
+        Save <span className="highlight">[{bodyPoints}]</span> //
+        Body Type Modifier <span className="highlight">[{(() => {
                 switch (true) {
                   case (bodyPoints <= 2 && charPointsHaveBeenRolled): {return '-0'};
                   case (bodyPoints >= 3 && bodyPoints <=4):   return '-1';
@@ -78,7 +78,7 @@ const CharSheet = () => {
                   case (bodyPoints === 10): return '-4';
                   case (bodyPoints >= 11): return '-5';
                 }
-              })()}
+              })()}]</span>
       </div>
 
     
@@ -87,32 +87,32 @@ const CharSheet = () => {
       {(role!=='') ? 
           <ul>
           {Object.values(career[role]).map((careerSkill, i) => (
-            <li key={i} >{careerSkill}: {careerSkillPoints[i+1]}</li>
+            <li key={i} >{careerSkill}: <span className="highlight">{careerSkillPoints[i+1]}</span></li>
           ))}
           {pickupSkills.map((skill, i) => (
-            <li key={i}>{skill}: {pickupSkillValues[i]}</li>
+            <li key={i}>{skill}: <span className="highlight">{pickupSkillValues[i]}</span></li>
           ))}
           </ul>  
-        : 'Must add skills!'}
+        : <span className="warning">Must add skills!</span>}
 
 
 
         <h3>STYLE</h3>
         <ul>
-          <li>Clothes: {(selectedClothes!=='select')?selectedClothes:'Must select clothing!'}</li>
-          <li>Hair: {(selectedHairstyle!=='select')?selectedHairstyle:'Must select clothing!'}</li>
-          <li>Affectations: {(selectedAffectations!=='select')?selectedAffectations:'Must select clothing!'}</li>
-          <li>Ethnicity: {(selectedEthnicity!=='select')?selectedEthnicity:'Must select clothing!'}</li>
-          <li>Language: {(selectedLanguage!=='select')?selectedLanguage:'Must select clothing!'}</li>
+          <li>Clothes: {(selectedClothes!=='select')?<span className="highlight">{selectedClothes}</span>:<span className="warning">Must select clothing!</span>}</li>
+          <li>Hair: {(selectedHairstyle!=='select')?<span className="highlight">{selectedHairstyle}</span>:<span className="warning">Must select clothing!</span>}</li>
+          <li>Affectations: {(selectedAffectations!=='select')?<span className="highlight">{selectedAffectations}</span>:<span className="warning">Must select clothing!</span>}</li>
+          <li>Ethnicity: {(selectedEthnicity!=='select')?<span className="highlight">{selectedEthnicity}</span>:<span className="warning">Must select clothing!</span>}</li>
+          <li>Language: {(selectedLanguage!=='select')?<span className="highlight">{selectedLanguage}</span>:<span className="warning">Must select clothing!</span>}</li>
         </ul>
 
         <h3>FAMILY BACKGROUND </h3>
         <ul>
-          <li>Family Ranking: {(selectedFamRank!=='select')?selectedFamRank:'Must select family rank!'}</li>
-          <li>Status of Parents: {(selectedParentStatus!=='select')?selectedParentStatus:'Must select parent status!'}</li>
+          <li>Family Ranking: {(selectedFamRank!=='select')?<span className="highlight">{selectedFamRank}</span>:<span className="warning">Must select family rank!</span>}</li>
+          <li>Status of Parents: {(selectedParentStatus!=='select')?<span className="highlight">{selectedParentStatus}</span>:<span className="warning">Must select parent status!</span>}</li>
           {(selectedParentStatus==='Something happened to one or both parents')?
-            <li>Family Status: {(selectedParentTragedy!=='select')?selectedParentTragedy:'Must select parent tragedy!'}</li>:''}
-          <li>Childhood Environment: {(selectedChildEnv!=='select')?selectedChildEnv:'Must select childhood environment!'}</li>
+            <li>Family Status: {(selectedParentTragedy!=='select')?<span className="highlight">{selectedParentTragedy}</span>:<span className="warning">Must select parent tragedy!</span>}</li>:''}
+          <li>Childhood Environment: {(selectedChildEnv!=='select')?<span className="highlight">{selectedChildEnv}</span>:<span className="warning">Must select childhood environment!</span>}</li>
         </ul>
 
         <h4>SIBLINGS</h4>
@@ -122,25 +122,27 @@ const CharSheet = () => {
                 <li key={i}>{sibling.gender} | {sibling.age} | {sibling.feeling} </li>
               ))}          
             </ol>
-        : 'No siblings–you are an only child.'
+        : <span className="highlight">No siblings–you are an only child.</span>
         }
 
         <h3>MOTIVATIONS</h3>
         <ul>
-          <li>Personality Traits: {selectedPersTraits!=='select'?selectedPersTraits:'Must select personality traits!'}</li>
-          <li>Valued Person: {selectedPersValued!=='select'?selectedPersValued:'Must select valued person!'}</li>
-          <li>Value Most: {selectedYouValue!=='select'?selectedYouValue:'Must select what you value most!'}</li>
-          <li>Feel About People: {selectedHowFeel!=='select'?selectedHowFeel:'Must select disposition!'}</li>
-          <li>Valued Possession: {selectedValuedPos!=='select'?selectedValuedPos:'Must select valued possession!'}</li>
+          <li>Personality Traits: {selectedPersTraits!=='select'?<span className="highlight">{selectedPersTraits}</span>:<span className="warning">Must select personality traits!</span>}</li>
+          <li>Valued Person: {selectedPersValued!=='select'?<span className="highlight">{selectedPersValued}</span>:<span className="warning">Must select valued person!</span>}</li>
+          <li>Value Most: {selectedYouValue!=='select'?<span className="highlight">{selectedYouValue}</span>:<span className="warning">Must select what you value most!</span>}</li>
+          <li>Feel About People: {selectedHowFeel!=='select'?<span className="highlight">{selectedHowFeel}</span>:<span className="warning">Must select disposition!</span>}</li>
+          <li>Valued Possession: {selectedValuedPos!=='select'?<span className="highlight">{selectedValuedPos}</span>:<span className="warning">Must select valued possession!</span>}</li>
         </ul>
         <h3>LIFE EVENTS</h3>
-        <h4>Age: {age}</h4>
-        <h4>Life Events</h4>
+        <h4>Age: <span className="highlight">{age}</span></h4>
         {lifeEvents.length>0?
-        <ol start="17">
-          {lifeEvents.map((event, i)=>(<li key={i}>{event}</li>))}
-        </ol>        
-        : <p>Must generate life events!</p>
+          <div>
+            <h4>Annual Events</h4>
+            <ol start="17">
+              {lifeEvents.map((event, i)=>(<li key={i}>{event}</li>))}
+            </ol>    
+          </div>    
+        : <p><span className="warning">Must generate life events!</span></p>
         }
 
 

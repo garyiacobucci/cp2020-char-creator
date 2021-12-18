@@ -86,7 +86,7 @@ const Stats = () => {
           </FormControl>     
         </div>
         <div>
-          <p>Roll method: {rollMethod}</p>
+          <p>Roll method: {rollMethod!==''?rollMethod:<span className="warning">Must select a roll method!</span>}</p>
           {rollMethod==='Manually Enter' && 
           <form>
             <input
@@ -102,7 +102,7 @@ const Stats = () => {
               <p>Points Total: {charPointsRoll && reducedCharPointsRoll}</p>
             </div> : 
             <div>
-              <p>Points Total: {charPointsRoll}</p>
+              <p>Points Total: <span className="callout highlight">{charPointsRoll}</span></p>
             </div>
           }
         </div>
@@ -121,7 +121,7 @@ const Stats = () => {
         {(charPointsHaveBeenRolled) ? 
         
         <div>
-          <p className="callout">Stats Points to Distribute: {reducedCharPointsRoll-accAssignedPoints}</p>
+          <p className="callout">Stats Points to Distribute: <span className="highlight">{reducedCharPointsRoll-accAssignedPoints}</span></p>
 
           <PointsDistributor 
             pointValue={intPoints} 
@@ -239,12 +239,12 @@ const Stats = () => {
         <h3>Derived Stats</h3>
         <p>Below fields are automatically calculated.</p>
         <ul>
-          <li>Run {maPoints * 3} meters</li>
-          <li>Leap {(maPoints * 3)/4} meters</li>
-          <li>Lift {bodyPoints*40} kgs / {Math.floor(bodyPoints*40*2.2046)} lbs</li>
-          <li>Carry {bodyPoints*10} kgs / {Math.floor(bodyPoints*10*2.2046)} lbs</li>
+          <li>Run <span className="callout highlight">{maPoints * 3}</span> meters</li>
+          <li>Leap <span className="callout highlight">{(maPoints * 3)/4}</span> meters</li>
+          <li>Lift <span className="callout highlight">{bodyPoints*40}</span> kgs / <span className="callout highlight">{Math.floor(bodyPoints*40*2.2046)}</span> lbs</li>
+          <li>Carry <span className="callout highlight">{bodyPoints*10}</span> kgs / <span className="callout highlight">{Math.floor(bodyPoints*10*2.2046)}</span> lbs</li>
           <li>Body type:&nbsp;
-            {(() => {
+          <span className="callout highlight">{(() => {
               switch (true) {
                 case (bodyPoints <= 2 && charPointsHaveBeenRolled): {return 'Very Weak'};
                 case (bodyPoints >= 3 && bodyPoints <=4):   return 'Weak';
@@ -253,10 +253,10 @@ const Stats = () => {
                 case (bodyPoints === 10): return 'Very Strong';
                 case (bodyPoints >= 11): return 'Cybernetically Enhanced';
               }
-            })()}
+            })()}</span>
           </li>
           <li>Body type modifier:&nbsp;
-            {(() => {
+          <span className="callout highlight">{(() => {
               switch (true) {
                 case (bodyPoints <= 2 && charPointsHaveBeenRolled): {return '-0'};
                 case (bodyPoints >= 3 && bodyPoints <=4):   return '-1';
@@ -265,9 +265,9 @@ const Stats = () => {
                 case (bodyPoints === 10): return '-4';
                 case (bodyPoints >= 11): return '-5';
               }
-            })()}</li>
-          <li>Save: {bodyPoints}</li>
-          <li>Humanity: {empPoints*10}</li>
+            })()}</span></li>
+          <li>Save: <span className="callout highlight">{bodyPoints}</span></li>
+          <li>Humanity: <span className="callout highlight">{empPoints*10}</span></li>
         </ul>
       </div>
 

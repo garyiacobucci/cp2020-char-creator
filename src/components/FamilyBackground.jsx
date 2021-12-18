@@ -104,7 +104,7 @@ const FamilyBackground = () => {
 
           {siblings.map((sibling, i) => (
             <div className="points-distributor-wrapper" key={i}>
-              <div className="points-distributor-category"><h3>{i+1}</h3></div>
+              <div className="points-distributor-category"><span className="callout highlight">{i+1}</span></div>
               <div className="selection-dropdown">
                 <span>Gender:&nbsp;</span>
                 <Select

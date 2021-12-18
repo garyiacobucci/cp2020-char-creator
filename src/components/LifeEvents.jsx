@@ -25,30 +25,27 @@ const LifeEvents = () => {
         {userHandle!=='' ? userHandle: <span>your character</span>}'s age.
         For each year of their life past 16, we'll determine a major event that
         shaped their life for that year.
-      </p>   
+      </p>
 
       <div className="points-distributor-wrapper">
-        <div className="points-distributor-category">
+          <div className="career-points-distributor-category">
             <div className="point-value">{age}</div>
             <div className="category-name">Age</div>
             <button className="randomize" onClick={()=>{
               setAge(()=>randomAge())
             }}>Randomize</button>
+          </div>
+          <div className="points-distributor-control-panel">
+            <button className="button" onClick={()=>setAge(age+1)} disabled={age > 98}>+</button>
+            <button className="button" onClick={()=>setAge(age-1)} disabled={age < 18}>-</button>
+          </div>
         </div>
-        <div className="points-distributor-control-panel">
-          <button className="button" onClick={()=>setAge(age+1)} disabled={age > 98}>+</button>
-          <button className="button" onClick={()=>setAge(age-1)} disabled={age < 18}>-</button>
-        </div>
-        <div key='1' className="points-distributor-value">
-          Must be a value between 17 and 99
-        </div>
-      </div>
 
       <button className="button" onClick={()=>updateLifeEvents(preventNothingHappened)}>Generate Life Events</button><br />
       <input type="checkbox" id="preventNothing" onClick={()=>setPreventNothingHappened(!preventNothingHappened)}/>
         <span className="fine-print">Check to prevent "Nothing Happened This Year" events.</span>
         <ol start="17">
-          { (lifeEvents.length > 0) ? <p>The following major events happened to you at age...</p> : <p className="warning">// Generate your life events to see what happened to you each year //</p> }
+          { (lifeEvents.length > 0) ? <p className="highlight">The following major events happened to you at age...</p> : <p className="warning">// Generate your life events to see what happened to you each year //</p> }
         
           {lifeEvents.map((event, i)=>(<li key={i}>{event}</li>))}
         </ol>
