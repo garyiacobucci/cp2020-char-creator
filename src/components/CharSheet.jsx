@@ -43,7 +43,6 @@ const CharSheet = () => {
   } = useContext(UserContext);
 
   return (
-    <div className="component-wrapper">
       <div className="widget">
       <h2>Character Sheet</h2>
       <p className="">HANDLE: {(userHandle!=='')?<span className="highlight">{userHandle}</span>:<span className="warning">Must select a handle!</span>}</p>
@@ -148,7 +147,6 @@ const CharSheet = () => {
 
         <CopyToClipboard />
       </div>
-    </div>
   )
 }
 

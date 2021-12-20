@@ -39,7 +39,7 @@ const Stats = () => {
   const reducedCharPointsRoll = (charPointsRoll.reduce((a,b)=>a+b,0));
 
   return (
-    <div className="component-wrapper">
+    <div className="column-container">
       {/*<div className="widget">
         <h2>Randomize Everything?</h2>
         <p>Clicking "Randomize Everything" button below will randomly select everything: Roll Method, Stats, Role, Skills, Style, Background, etc.</p>

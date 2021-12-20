@@ -22,7 +22,7 @@ const LifeEvents = () => {
       <h3>4. Life Events</h3>
       <p>You know where you came from and what you look like. Now let's
         take a look at the major events that made you what you are. Choose&nbsp;
-        {userHandle!=='' ? userHandle: <span>your character</span>}'s age.
+        {userHandle!=='' ? userHandle: <span>your character</span>}'s age <span className="highlight">(must be between 17 and 99)</span>.
         For each year of their life past 16, we'll determine a major event that
         shaped their life for that year.
       </p>

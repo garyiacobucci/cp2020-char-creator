@@ -54,12 +54,12 @@ const Role = () => {
         {/*Role selection dropdown*/}
         <div className="role-panel">
           <FormControl fullWidth>
-            <InputLabel id="role-select-label">Role</InputLabel>
+            <InputLabel id="role-select-label">&nbsp;ROLE</InputLabel>
             <Select
               labelId="role-select-label"
               id="role-select"
               value={role}
-              label="Role"
+              label="role"
               onChange={(e)=>{setRole(e.target.value);setCareerSkillPoints({1:4,2:4,3:4,4:4,5:4,6:4,7:4,8:4,9:4,10:4,11:0,12:0})}}
             >
               {Object.keys(career).map((role, i) => (

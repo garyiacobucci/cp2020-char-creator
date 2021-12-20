@@ -101,7 +101,6 @@ ul {
 }
 
 .column-container {
-  max-width: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -154,6 +153,7 @@ ul {
   border: 1px solid hotpink;
   margin-top: 5px;
   margin-bottom: 10px;
+  padding-bottom: 3px;
   .selection-dropdown {
     text-align: center;
   }
@@ -163,7 +163,7 @@ ul {
 .points-distributor-category {
   //border: 1px dotted gold;
   text-align: center;
-  flex-grow: 0.75;
+  flex-grow: 0.5;
   width: 15%;
   .category-name {
     size: 16px;
@@ -200,7 +200,30 @@ ul {
   font-weight: 700;
 }
 
-
 .warning {
   color: hotpink;
+}
+
+@media screen and (min-width: 320px) {  
+  .column-container {
+    max-width: 320px;
+  }
+}
+
+@media screen and (min-width: 480px) {  
+  .column-container {
+    max-width: 480px;
+  }
+}
+
+@media screen and (min-width: 768px) {  
+  .column-container {
+    max-width: 768px;
+  }
+}
+
+@media screen and (min-width: 992px) {  
+  .column-container {
+    max-width: 992px;
+  }
 }
