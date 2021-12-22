@@ -10,6 +10,9 @@ import FamilyBackground from './FamilyBackground';
 import Motivations from './Motivations';
 import { career, diceRoll } from './../staticData';
 
+// Import static assets
+import RoleImage from './../Assets/Images/cp2020-role_image.jpg';
+
 const Role = () => {
 
   //Connect to UserContext via Context API:
@@ -29,6 +32,7 @@ const Role = () => {
       <div className="widget">
 
         <h2>Role and Skills</h2>
+        <img src={RoleImage} alt="A female cyberpunk, an NCPD cop, and a male cyberpunk" className="responsive bordered-image"/>
         <h3>Role&nbsp;<button className="randomize" onClick={()=>{
           setRole(Object.keys(career)[diceRoll(10,1)-1]);
           setCareerSkillPoints({1:4,2:4,3:4,4:4,5:4,6:4,7:4,8:4,9:4,10:4,11:0,12:0})
@@ -86,27 +90,25 @@ const Role = () => {
 
             {pickupSkillCategories.map((category, i) => (
               <div className="points-distributor-wrapper" key={i}>
-
-                <div className="pickup-skill-category-menu">
-                  <div className="dropdown-cluster-wrapper">
-                  <Select
-                    labelId="pickup-skills-category-select-label"
-                    id="pickup-skills-category-select"
-                    value={category}
-                    label="Pickup Skill Category"
-                    onChange={(e)=>updatePickupSkillCategories(e, i)}
-                  >
-                    <MenuItem value={'select'}>SELECT</MenuItem>
-                    <MenuItem value={'attr'}>ATTR</MenuItem>
-                    <MenuItem value={'body'}>BODY</MenuItem>
-                    <MenuItem value={'cool'}>COOL</MenuItem>
-                    <MenuItem value={'emp'}>EMP</MenuItem>
-                    <MenuItem value={'stat_int'}>INT</MenuItem>
-                    <MenuItem value={'ref'}>REF</MenuItem>
-                    <MenuItem value={'tech'}>TECH</MenuItem>
-                  </Select>
-
-                  <PickupSkillsMenu i={i} />
+                <div className="dropdown-cluster-wrapper">
+                  <div className="pickup-skill-category-menu">
+                    <Select
+                      labelId="pickup-skills-category-select-label"
+                      id="pickup-skills-category-select"
+                      value={category}
+                      label="Pickup Skill Category"
+                      onChange={(e)=>updatePickupSkillCategories(e, i)}
+                    >
+                      <MenuItem value={'select'}>SELECT</MenuItem>
+                      <MenuItem value={'attr'}>ATTR</MenuItem>
+                      <MenuItem value={'body'}>BODY</MenuItem>
+                      <MenuItem value={'cool'}>COOL</MenuItem>
+                      <MenuItem value={'emp'}>EMP</MenuItem>
+                      <MenuItem value={'stat_int'}>INT</MenuItem>
+                      <MenuItem value={'ref'}>REF</MenuItem>
+                      <MenuItem value={'tech'}>TECH</MenuItem>
+                    </Select>
+                    <PickupSkillsMenu i={i} />
                   </div>
                 </div>
 

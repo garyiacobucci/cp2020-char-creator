@@ -7,6 +7,10 @@ body {
   text-justify: auto;
 }
 
+.bordered-image {
+  border: 1px solid #b49b1c;
+}
+
 @mixin button-reset {
   padding: 0;
   border: none;
@@ -149,7 +153,7 @@ ul {
   display:flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   border: 1px solid hotpink;
   margin-top: 5px;
   margin-bottom: 10px;
@@ -163,10 +167,10 @@ ul {
     text-align: center;
   }
   .dropdown-cluster-wrapper {
-    flex-grow: 1;
     display:flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
   }
   .points-distributor-category {
     text-align: center;
@@ -198,10 +202,14 @@ ul {
 
 }
 
+.responsive {
+  max-width: 100%;
+}
+
 .career-points-distributor-category {
   text-align: center;
   width: 50%;
-  flex-grow: 1;
+  flex-grow: .5;
   .category-name {
     size: 16px;
     font-weight: 700;

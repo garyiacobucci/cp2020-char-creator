@@ -606,7 +606,7 @@ const youMadeAFriend = [
   "Turned an old enemy (choose which one) into a friend.",
   "Formed a connection with someone who's like a foster parent to you.",
   "Made a friend out of a relative.",
-  "Reconnected with an old childhood friend",
+  "Reconnected with an old childhood friend.",
   "Met a new friend through a common interest."
 ]
 

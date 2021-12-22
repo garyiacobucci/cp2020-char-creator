@@ -7,6 +7,9 @@ import { UserContext } from '../UserContext';
 import PointsDistributor from './PointsDistributor';
 import { diceRoll, randRollMethodOptions } from '../staticData.js';
 
+// Import static assets
+import StatsImage from './../Assets/Images/cp2020-stats_image.jpg';
+
 const Stats = () => {
 
   //Connect to UserContext via Context API:
@@ -59,6 +62,7 @@ const Stats = () => {
 
       <div className="widget">
         <h2>Statistics</h2>
+        <img src={StatsImage} alt="A cyberpunk in a baseball hat fires a gun at an unseen target" className="responsive bordered-image"/>
         <h3>Character Points&nbsp;<button className="randomize" onClick={()=>{setRollMethod(randRollMethodOptions[diceRoll(6,1)-1][0]);assignCharPointsRoll(randRollMethodOptions[diceRoll(6,1)-1][1])}}>Randomize</button></h3>
         <p>Character Points are the cash of character creation—you can use them to "buy" the various "mechanics"
           aspects of the character, like good looks, a strong, hard body, unshakable cool and street smarts (but not 
