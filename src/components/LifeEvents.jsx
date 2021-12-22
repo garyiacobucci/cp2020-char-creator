@@ -39,6 +39,7 @@ const LifeEvents = () => {
             <button className="button" onClick={()=>setAge(age+1)} disabled={age > 98}>+</button>
             <button className="button" onClick={()=>setAge(age-1)} disabled={age < 18}>-</button>
           </div>
+          <div>&nbsp;</div>
         </div>
 
       <button className="button" onClick={()=>updateLifeEvents(preventNothingHappened)}>Generate Life Events</button><br />

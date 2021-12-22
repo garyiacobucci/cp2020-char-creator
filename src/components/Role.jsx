@@ -18,6 +18,7 @@ const Role = () => {
     role, setRole, accSkillPoints,
     addNewPickupSkillRow, removePickupSkillRow, 
     setCareerSkillPoints,
+    pickupSkills,
     pickupSkillCategories, updatePickupSkillCategories, 
     pickupSkillValues, updatePickupSkillValues, accPickupSkills
   } = useContext(UserContext);
@@ -87,6 +88,7 @@ const Role = () => {
               <div className="points-distributor-wrapper" key={i}>
 
                 <div className="pickup-skill-category-menu">
+                  <div className="dropdown-cluster-wrapper">
                   <Select
                     labelId="pickup-skills-category-select-label"
                     id="pickup-skills-category-select"
@@ -103,22 +105,23 @@ const Role = () => {
                     <MenuItem value={'ref'}>REF</MenuItem>
                     <MenuItem value={'tech'}>TECH</MenuItem>
                   </Select>
+
+                  <PickupSkillsMenu i={i} />
+                  </div>
                 </div>
 
-
-                <PickupSkillsMenu i={i} />
 
 
                 <div className="points-distributor-control-panel" id="pickup-control-panel">
                   <button
                     className="button"
                     onClick={()=>updatePickupSkillValues(i, 1)}
-                    disabled={category==='select'||(refPoints+intPoints)-accPickupSkills<1} >+
+                    disabled={pickupSkills[i]==='select'||(refPoints+intPoints)-accPickupSkills<1} >+
                   </button>
                   <button
                     className="button"
                     onClick={()=>updatePickupSkillValues(i, -1)}
-                    disabled={category==='select'||pickupSkillValues[i]<1} >-
+                    disabled={pickupSkills[i]==='select'||pickupSkillValues[i]<1} >-
                   </button>
                 </div>
 

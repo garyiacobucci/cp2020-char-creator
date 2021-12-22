@@ -40,11 +40,6 @@ const Stats = () => {
 
   return (
     <div className="column-container">
-      {/*<div className="widget">
-        <h2>Randomize Everything?</h2>
-        <p>Clicking "Randomize Everything" button below will randomly select everything: Roll Method, Stats, Role, Skills, Style, Background, etc.</p>
-        <div><button type="button" className="button" onClick={toggleTheme}>Randomize Everything</button></div>
-      </div>*/}
 
       <div className="widget">
         <h2>Handle</h2>
@@ -129,9 +124,9 @@ const Stats = () => {
             categoryShorthand={'INT'}
             addCallback={(e) => setIntPoints(intPoints+1)}
             subCallback={(e) => setIntPoints(intPoints-1)}
-            description={`This is a measure of your problem solving ability; figuring out problems, noticing things, 
+            description={<><span style={{color:'white'}}>Intelligence:</span> This is a measure of your problem solving ability; figuring out problems, noticing things, 
             remembering information. Almost every character type will need a high Intelligence, with 
-            Netrunners and Corporates requiring the highest of all.`} 
+            Netrunners and Corporates requiring the highest of all.</>} 
           />
 
           <PointsDistributor 
@@ -140,10 +135,10 @@ const Stats = () => {
             categoryShorthand={'REF'}
             addCallback={(e) => setRefPoints(refPoints+1)}
             subCallback={(e) => setRefPoints(refPoints-1)}
-            description={`This is a combined index, covering not only your basic dexterity, but also how your 
+            description={<><span style={{color:'white'}}>Reflexes:</span> This is a combined index, covering not only your basic dexterity, but also how your 
             level of physical coordination will affect feats of driving, piloting, fighting and 
             athletics. Characters who intend to engage in a great deal of combat (such as Solos, 
-            Nomads or Rockerboys) should always invest in the highest possible Reflex.`}
+            Nomads or Rockerboys) should always invest in the highest possible Reflex.</>}
           />
 
           <PointsDistributor 
@@ -152,11 +147,11 @@ const Stats = () => {
             categoryShorthand={'COOL'}
             addCallback={(e) => setCoolPoints(coolPoints+1)}
             subCallback={(e) => setCoolPoints(coolPoints-1)}
-            description={`This index measures how well the character stands up to stress, fear, pressure, physical pain 
+            description={<><span style={{color:'white'}}>Cool:</span> This index measures how well the character stands up to stress, fear, pressure, physical pain 
             and/or torture. In determining your willingness to fight on despite wounds oryourfighting ability
             under fire, Cool (CL) is essential. It is also the measure of how "together" your character is and
             how tough he appears to others. Rockerboys and Fixers should always have a high Cool, with Solos
-            and Nomads having the highest of all.`}
+            and Nomads having the highest of all.</>}
           />
 
           <PointsDistributor 
@@ -165,11 +160,11 @@ const Stats = () => {
             categoryShorthand={'TECH'}
             addCallback={(e) => setTechPoints(techPoints+1)}
             subCallback={(e) => setTechPoints(techPoints-1)}
-            description={`This is an index of how well you relate to hardware and other technically oriented things. 
+            description={<><span style={{color:'white'}}>Tech:</span> This is an index of how well you relate to hardware and other technically oriented things. 
             In Cyberpunk, the ability to use and repair technology is of paramount importance—TECH will 
             be the Stat used when fixing, repairing and attempting to use unfamiliar tech. While all 
             characters should have a decent Tech Stat, potential Techies should always opt for the 
-            highest possible score in this area.`}
+            highest possible score in this area.</>}
           />
 
           <PointsDistributor 
@@ -178,9 +173,9 @@ const Stats = () => {
             categoryShorthand={'ATT'}
             addCallback={(e) => setAttPoints(attPoints+1)}
             subCallback={(e) => setAttPoints(attPoints-1)}
-            description={`This is how good-looking you are. In Cyberpunk, it's not enough to be good—you have to look 
+            description={<><span style={{color:'white'}}>Attractiveness:</span> This is how good-looking you are. In Cyberpunk, it's not enough to be good—you have to look 
             good while you're doing it (Attitude is Everything). Attractiveness is especially important to 
-            Medias and Rockerboys, as being good-looking is part of their jobs.`}
+            Medias and Rockerboys, as being good-looking is part of their jobs.</>}
           />
 
           <PointsDistributor 
@@ -189,11 +184,11 @@ const Stats = () => {
             categoryShorthand={'LUCK'}
             addCallback={(e) => setLuckPoints(luckPoints+1)}
             subCallback={(e) => setLuckPoints(luckPoints-1)}
-            description={`This is the intangible "something" that throws the balance of events into your favor. Your luck represents
+            description={<><span style={{color:'white'}}>Luck:</span> This is the intangible "something" that throws the balance of events into your favor. Your luck represents
             how many points you may use each game to influence the outcome of a critical event. To use Luck, you may add
             any or all of the points of luck a character has to a critical die roll (declaring your inetntion to use Luck
             before the roll is made) until all of your Luck stat is used up. Luck is always restored at the end of each 
-            game session.`}
+            game session.</>}
           />
 
           <PointsDistributor 
@@ -202,8 +197,8 @@ const Stats = () => {
             categoryShorthand={'MA'}
             addCallback={(e) => setMaPoints(maPoints+1)}
             subCallback={(e) => setMaPoints(maPoints-1)}
-            description={`This is an index of how fast your character can run (important in combat situations). The higher your Movement 
-            Allowance (MA), the more distance you can cover in a turn. (Affects RUN and LEAP)`}
+            description={<><span style={{color:'white'}}>Movement Allowance:</span> This is an index of how fast your character can run (important in combat situations). The higher your Movement 
+            Allowance (MA), the more distance you can cover in a turn. (Affects RUN and LEAP)</>}
           />
 
           <PointsDistributor 
@@ -212,10 +207,10 @@ const Stats = () => {
             categoryShorthand={'BODY'}
             addCallback={(e) => setBodyPoints(bodyPoints+1)}
             subCallback={(e) => setBodyPoints(bodyPoints-1)}
-            description={`Strength, Endurance and Constitution are all based on the character's Body Type. Body Type determines how 
+            description={<><span style={{color:'white'}}>Body Type:</span> Strength, Endurance and Constitution are all based on the character's Body Type. Body Type determines how 
             much damage you can take in wounds, how much you can lift or carry, how far you can throw, how well
             you recover from shock, and how much additional damage you cause with physical attacks. Body Type is 
-            important to all character types, but to Solos, Rockerboys and Nomads most of all. (Affects CARRY and LIFT)`}
+            important to all character types, but to Solos, Rockerboys and Nomads most of all. (Affects CARRY and LIFT)</>}
           />
 
           <PointsDistributor 
@@ -224,7 +219,7 @@ const Stats = () => {
             categoryShorthand={'EMP'}
             addCallback={(e) => setEmpPoints(empPoints+1)}
             subCallback={(e) => setEmpPoints(empPoints-1)}
-            description={<>This Stat represents how well you relate to other living things—a measure of charisma and sympathetic 
+            description={<><span style={{color:'white'}}>Empathy:</span> This Stat represents how well you relate to other living things—a measure of charisma and sympathetic 
             emotions. In a world of alienated, future-shocked survivors, the ability to be "human" can no longer be
             taken for granted. Empathy (EM) is critical when leading, convincing, seducing, or perceiving emotional
             undercurrents. Empathy is also a measure of how close he/she is to the line between feeling human being
@@ -234,8 +229,6 @@ const Stats = () => {
         : <div className="warning">// Determine your Character Points to assign them (See above) //</div> }
 
   
-
-
         <h3>Derived Stats</h3>
         <p>Below fields are automatically calculated.</p>
         <ul>

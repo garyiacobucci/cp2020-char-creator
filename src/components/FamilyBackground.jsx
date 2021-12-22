@@ -81,7 +81,7 @@ const FamilyBackground = () => {
         : ''}
 
 
-       <div className="child-environment-dropdown">
+       <div className="selection-dropdown">
           <span>Childhood Environment:&nbsp;</span>
           <Select
             labelId="child-environment-select-label"
@@ -97,63 +97,66 @@ const FamilyBackground = () => {
           </Select>
         </div>
 
-        <h4>Siblings</h4>
-        <h5>You may add up to seven siblings:</h5>
+        <h4>Siblings (Add up to seven)</h4>
 
-          <div><button className="button" onClick={()=>{addSibling()}}>Add Sibling</button></div>
+          <div><button className="button" onClick={()=>{addSibling()}} disabled={(siblings.length > 6)}>Add Sibling</button></div>
 
           {siblings.map((sibling, i) => (
             <div className="points-distributor-wrapper" key={i}>
-              <div className="points-distributor-category"><span className="callout highlight">{i+1}</span></div>
-              <div className="selection-dropdown">
-                <span>Gender:&nbsp;</span>
-                <Select
-                  labelId="sibling-gender-select-label"
-                  id="sibling-gender-select"
-                  value={sibling.gender}
-                  label="sibling-gender"
-                  onChange={(e)=>updateSibling(i, 'gender', e.target.value)}
-                >
-                  <MenuItem value={'select'}>SELECT</MenuItem>
-                  <MenuItem value={'Male'}>Male</MenuItem>
-                  <MenuItem value={'Female'}>Female</MenuItem>
-                  <MenuItem value={'Other/NB'}>Other/NB</MenuItem>                    
-                </Select>
-              </div>
+              <div className="points-distributor-category-sibling"><span className="callout highlight">{i+1}</span></div>
+              
+              <div className="dropdown-cluster-wrapper">
 
-              <div className="selection-dropdown">
-                <span>Age:&nbsp;</span>
-                <Select
-                  labelId="sibling-age-select-label"
-                  id="sibling-age-select"
-                  value={sibling.age}
-                  label="sibling-age"
-                  onChange={(e)=>updateSibling(i, 'age', e.target.value)}
-                >
-                  <MenuItem value={'select'}>SELECT</MenuItem>
-                  <MenuItem value={'Older than you'}>Older than you</MenuItem>
-                  <MenuItem value={'Younger than you'}>Younger than you</MenuItem>
-                  <MenuItem value={'Your twin'}>Your twin</MenuItem>
-                </Select>
-              </div>
+                <div className="selection-dropdown">
+                  <span>Gender:&nbsp;</span>
+                  <Select
+                    labelId="sibling-gender-select-label"
+                    id="sibling-gender-select"
+                    value={sibling.gender}
+                    label="sibling-gender"
+                    onChange={(e)=>updateSibling(i, 'gender', e.target.value)}
+                  >
+                    <MenuItem value={'select'}>SELECT</MenuItem>
+                    <MenuItem value={'Male'}>Male</MenuItem>
+                    <MenuItem value={'Female'}>Female</MenuItem>
+                    <MenuItem value={'Other/NB'}>Other/NB</MenuItem>                    
+                  </Select>
+                </div>
 
-              <div className="selection-dropdown">
-                <span>Feeling Towards You:&nbsp;</span>
-                <Select
-                  labelId="sibling-feeling-select-label"
-                  id="sibling-feeling-select"
-                  value={sibling.feeling}
-                  label="sibling-feeling"
-                  onChange={(e)=>updateSibling(i, 'feeling', e.target.value)}
-                >
-                  <MenuItem value={'select'}>SELECT</MenuItem>
-                  <MenuItem value={'Neutral towards you'}>Is neutral towards you</MenuItem>                    
-                  <MenuItem value={'Likes you'}>Likes you</MenuItem>
-                  <MenuItem value={'Dislikes you'}>Dislikes you</MenuItem>
-                  <MenuItem value={'Hero worships you'}>Hero worships you</MenuItem>
-                  <MenuItem value={'Hates you'}>Hates you</MenuItem>
-                </Select>
-              </div>
+                <div className="selection-dropdown">
+                  <span>Age:&nbsp;</span>
+                  <Select
+                    labelId="sibling-age-select-label"
+                    id="sibling-age-select"
+                    value={sibling.age}
+                    label="sibling-age"
+                    onChange={(e)=>updateSibling(i, 'age', e.target.value)}
+                  >
+                    <MenuItem value={'select'}>SELECT</MenuItem>
+                    <MenuItem value={'Older than you'}>Older than you</MenuItem>
+                    <MenuItem value={'Younger than you'}>Younger than you</MenuItem>
+                    <MenuItem value={'Your twin'}>Your twin</MenuItem>
+                  </Select>
+                </div>
+
+                <div className="selection-dropdown">
+                  <span>Feeling Towards You:&nbsp;</span>
+                  <Select
+                    labelId="sibling-feeling-select-label"
+                    id="sibling-feeling-select"
+                    value={sibling.feeling}
+                    label="sibling-feeling"
+                    onChange={(e)=>updateSibling(i, 'feeling', e.target.value)}
+                  >
+                    <MenuItem value={'select'}>SELECT</MenuItem>
+                    <MenuItem value={'Neutral towards you'}>Is neutral towards you</MenuItem>                    
+                    <MenuItem value={'Likes you'}>Likes you</MenuItem>
+                    <MenuItem value={'Dislikes you'}>Dislikes you</MenuItem>
+                    <MenuItem value={'Hero worships you'}>Hero worships you</MenuItem>
+                    <MenuItem value={'Hates you'}>Hates you</MenuItem>
+                  </Select>
+                </div>
+              </div>  
 
               <div><button className="button" onClick={()=>removeSibling(i)}>X</button></div>
 
