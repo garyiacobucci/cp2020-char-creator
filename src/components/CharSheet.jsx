@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
-import { Button } from '@material-ui/core';
 import { UserContext } from '../UserContext';
-import { roles, career } from './../staticData';
-import { Language } from '@material-ui/icons';
+import { career } from './../staticData';
 import CopyToClipboard from './CopyToClipboard';
 
 const CharSheet = () => {
@@ -143,7 +141,6 @@ const CharSheet = () => {
           </div>    
         : <p><span className="warning">Must generate life events!</span></p>
         }
-
 
         <CopyToClipboard />
       </div>

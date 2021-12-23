@@ -1,9 +1,7 @@
 
 import React, { useContext } from 'react';
-import { Button } from '@material-ui/core';
 import { UserContext } from '../UserContext';
-import { roles, career } from './../staticData';
-import { Language } from '@material-ui/icons';
+import { career } from './../staticData';
 
 const CopyToClipboard = () => {
 

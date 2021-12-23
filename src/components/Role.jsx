@@ -2,13 +2,12 @@ import React, { useContext } from 'react';
 import { MenuItem, InputLabel, Select, FormControl } from '@material-ui/core';
 import { UserContext } from '../UserContext';
 import CareerPointsDistributor from './CareerPointsDistributor';
-import PickupSkillsMenu from './PickupSkillsMenu';
 import LifeEvents from './LifeEvents';
 import LifePath from './LifePath';
 import Origins from './Origins';
 import FamilyBackground from './FamilyBackground';
 import Motivations from './Motivations';
-import { career, diceRoll } from './../staticData';
+import { skills, career, diceRoll } from './../staticData';
 
 // Import static assets
 import RoleImage from './../Assets/Images/cp2020-role_image.jpg';
@@ -21,7 +20,7 @@ const Role = () => {
     role, setRole, accSkillPoints,
     addNewPickupSkillRow, removePickupSkillRow, 
     setCareerSkillPoints,
-    pickupSkills,
+    pickupSkills, updatePickupSkills,
     pickupSkillCategories, updatePickupSkillCategories, 
     pickupSkillValues, updatePickupSkillValues, accPickupSkills
   } = useContext(UserContext);
@@ -88,7 +87,12 @@ const Role = () => {
               <div><button className="button" onClick={()=>{addNewPickupSkillRow()}}>Add a Pickup Skill</button></div>
             </div>
 
-            {pickupSkillCategories.map((category, i) => (
+            {
+            /* Every time addNewPickupSkillRow is called, we update three arrays. 
+              The first of these, pickupSkillCategories, will trigger a re-render of this component.
+              Because we map over pickupSkillCategories on the following line, this will refresh the list of pickup skill rows. */
+            
+            pickupSkillCategories.map((category, i) => (
               <div className="points-distributor-wrapper" key={i}>
                 <div className="dropdown-cluster-wrapper">
                   <div className="pickup-skill-category-menu">
@@ -108,11 +112,34 @@ const Role = () => {
                       <MenuItem value={'ref'}>REF</MenuItem>
                       <MenuItem value={'tech'}>TECH</MenuItem>
                     </Select>
-                    <PickupSkillsMenu i={i} />
+
+                    {
+                    
+                    /* Conditionally render the sub-menu for the selected pickup skill category's skills options. */
+                    
+                    (pickupSkillCategories[i]!=='select')? 
+                      <div className="pickup-skills-menu">
+                        <Select
+                          labelId="pickup-skills-select-label"
+                          id="pickup-skills-select"
+                          value={pickupSkills[i]}
+                          label="Pickup Skill"
+                          onChange={(e)=>updatePickupSkills(e, i)}
+                        >
+                          <MenuItem value={'select'}>SELECT</MenuItem>
+                          {
+                            Object.values(skills[pickupSkillCategories[i]]).map((skill, j) => (
+                              <MenuItem key={j} value={Object.values(skills[pickupSkillCategories[i]])[j+1]}>{Object.values(skills[pickupSkillCategories[i]])[j+1]}</MenuItem>
+                            ))
+                          }
+                        </Select>
+                      </div>                    
+                    :
+                      ''
+                    }
+
                   </div>
                 </div>
-
-
 
                 <div className="points-distributor-control-panel" id="pickup-control-panel">
                   <button

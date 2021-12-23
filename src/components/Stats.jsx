@@ -14,7 +14,6 @@ const Stats = () => {
 
   //Connect to UserContext via Context API:
   const {
-    toggleTheme,
     userHandle,
     setUserHandle,
     rollMethod, setRollMethod,

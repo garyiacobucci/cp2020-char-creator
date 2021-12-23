@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
 import { 
-  button, MenuItem, InputLabel, Select,
-  FormControlLabel, FormControl,
-  Radio, RadioGroup 
+  MenuItem, Select
 } from '@material-ui/core';
 import { UserContext } from '../UserContext';
 import { persTraits, persValued, youValue, howFeel, valuedPos, diceRoll } from '../staticData';

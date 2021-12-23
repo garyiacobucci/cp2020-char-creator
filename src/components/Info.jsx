@@ -12,7 +12,7 @@ const Info = (props) => {
         </span>
         <p>Generator built by <a href="https://githubhelp.com/garyiacobucci" target="_blank">Giovanni Iacobucci</a>, 
         inspired by an earlier <a href="https://github.com/ericdorsey/cp2020" target="_blank">project</a> by Eric Dorsey. 
-        Source code <a href="https://githubhelp.com/garyiacobucci/cp2020-char-creator" target="_blank">available on GitHub.</a></p>
+        Source code <a href="https://github.com/garyiacobucci/cp2020-char-creator" target="_blank">available on GitHub.</a></p>
       </div>
   )
 }

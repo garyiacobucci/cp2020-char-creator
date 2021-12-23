@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
 import { 
-  button, MenuItem, InputLabel, Select,
-  FormControlLabel, FormControl,
-  Radio, RadioGroup 
+  MenuItem, Select
 } from '@material-ui/core';
 import { UserContext } from '../UserContext';
 import { diceRoll, famRank, parentStatus, parentTragedy,
@@ -13,7 +11,6 @@ const FamilyBackground = () => {
 
   //Connect to UserContext via Context API:
   const { 
-    selectedClothes, selectedHairstyle, selectedAffectations, selectedEthnicity,
     setFamRank, selectedFamRank, setParentStatus, selectedParentStatus, setParentTragedy, selectedParentTragedy,
     setChildEnv, selectedChildEnv, siblings, addSibling, removeSibling,
     updateSibling } = useContext(UserContext);

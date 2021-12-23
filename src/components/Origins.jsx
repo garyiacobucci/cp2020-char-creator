@@ -1,12 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import { 
-  button, MenuItem, InputLabel, Select,
-  FormControlLabel, FormControl,
-  Radio, RadioGroup 
+  MenuItem, Select
 } from '@material-ui/core';
 import { UserContext } from '../UserContext';
-import { career, clothes, hairstyle, affectations, ethnic, languages, famRank, parentStatus, parentTragedy,
-  childEnv, persTraits, persValued, youValue, howFeel, valuedPos, diceRoll } from './../staticData';
+import { clothes, hairstyle, affectations, ethnic, languages, diceRoll } from './../staticData';
 
 
 const Origins = () => {
