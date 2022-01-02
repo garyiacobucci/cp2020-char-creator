@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../UserContext';
-import PointsDistributor from './PointsDistributor';
 
 
 const LifeEvents = () => {

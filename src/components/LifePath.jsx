@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 // Import static assets
-import LifepathImage from './../Assets/Images/cp2020-lifepath_image.jpg';
+import LifepathImage from './../assets/images/cp2020-lifepath_image.jpg';
 
 const LifePath = () => {
 

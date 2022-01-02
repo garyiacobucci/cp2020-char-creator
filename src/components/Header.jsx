@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Import static assets
-import Logo from './../Assets/Images/cp2020-logo.png';
+import Logo from './../assets/images/cp2020-logo.png';
 
 const Header = (props) => {
   return (

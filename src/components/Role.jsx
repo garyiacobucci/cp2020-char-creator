@@ -10,7 +10,7 @@ import Motivations from './Motivations';
 import { skills, career, diceRoll } from './../staticData';
 
 // Import static assets
-import RoleImage from './../Assets/Images/cp2020-role_image.jpg';
+import RoleImage from './../assets/images/cp2020-role_image.jpg';
 
 const Role = () => {
 

@@ -8,7 +8,7 @@ import PointsDistributor from './PointsDistributor';
 import { diceRoll, randRollMethodOptions } from '../staticData.js';
 
 // Import static assets
-import StatsImage from './../Assets/Images/cp2020-stats_image.jpg';
+import StatsImage from './../assets/images/cp2020-stats_image.jpg';
 
 const Stats = () => {
 
