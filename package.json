@@ -1,4 +1,10 @@
-{
+{ 
+  "name": "cp2020-char-creator",
+  "description": "A Player Character generator and lifepath engine for the role-playing game, Cyberpunk 2020",
+  "version": "1.0.0",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "start": "webpack serve --config ./webpack.config.js --mode development",
     "build": "npx webpack-cli build"
